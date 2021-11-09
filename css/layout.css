@@ -2,6 +2,10 @@
   display: none;
 }
 
+.inline {
+  display: inline;
+}
+
 .column-full {
   width: 100%;
 }

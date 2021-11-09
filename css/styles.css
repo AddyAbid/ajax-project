@@ -16,6 +16,10 @@ main {
   display: flex;
 }
 
+.font-black {
+  color: black;
+}
+
 .bg-blue {
   background-color: #192c88;
 }
@@ -54,8 +58,41 @@ main {
   margin-top: 3rem;
 }
 
+.mt-1-5rem {
+  margin-top: 1.5rem;
+}
+
 .flex {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.left-align-form {
+  text-align: left;
+}
+
+.pl-1rem {
+  padding-left: 1rem;
+}
+
+.border-style {
+  border: 1px;
+  border-radius: 5px;
+  width: 70%;
+  font-size: 1.2rem;
+}
+
+.search {
+  border-radius: 5px;
+  border: 1px;
+  background-color: #192c88;
+  color: white;
+  text-align: center;
+  padding: 6px 15px;
+  margin-left: 1rem;
+}
+
+.search:hover {
+  cursor: pointer;
 }

@@ -16,7 +16,7 @@
   <header>
     <div class="nav bg-blue">
        <div class="row">
-         <div class="column-full select">
+         <div class="column-full">
           <h2 class="mt-mb pd-l dashboard select" data-view="dashboard">Who's that Character?!</h2>
           </div>
         </div>
@@ -32,18 +32,23 @@
         </div>
         <div class="column-full">
           <div class="select-char-button select mt-3rem flex" data-view="search-page">
-            <h2>Search Characters</h2>
+            <h2 class="select" data-view="search-page">Search Characters</h2>
           </div>
         </div>
       </div>
     </div>
     <div class="container view hidden" data-view="search-page">
       <div class="form-page">
-        <form>
+        <form id="searchData">
           <div class="row">
             <div class="column-full">
-              <label for="search">Search</label>
-              <input type="text" id="search">
+              <div class="left-align-form pl-1rem mt-1-5rem">
+                <label for="search" class="font-black">Search</label><br>
+                <input type="text" id="search" name="input" class="border-style font-black">
+                <div class="search-button inline">
+                  <button class="search">Submit</button>
+                </div>
+              </div>
             </div>
           </div>
         </form>

@@ -15,4 +15,19 @@ function swapView(event) {
       $view[i].className = 'container view hidden';
     }
   }
+  var currentView = event.target.getAttribute('data-view');
+  data.view = currentView;
+}
+
+var $input = document.querySelector('#searchData');
+
+$input.addEventListener('submit', submitData);
+
+function submitData(event) {
+  event.preventDefault();
+  var searchInfo = {
+    searched: $input.input.value
+  };
+  $input.reset();
+  console.log(searchInfo);
 }
