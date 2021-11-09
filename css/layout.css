@@ -10,6 +10,10 @@
   width: 100%;
 }
 
+.column-100 {
+  width: 100%;
+}
+
 .col-full {
   width: 50%;
 }
@@ -77,6 +81,10 @@
     padding-top: 10px;
     font-size: 1rem;
   }
+
+  .left-align-form {
+    text-align: center;
+  }
 }
 
 @media only screen and (max-width: 687px) {
@@ -96,5 +104,9 @@
 
   .card-text {
     font-size: 1.5rem;
+  }
+
+  .left-align-form {
+    text-align: left;
   }
 }
