@@ -10,6 +10,14 @@
   width: 100%;
 }
 
+.col-third {
+  width: calc(100% / 3);
+}
+
+.col-75 {
+  width: 75%;
+}
+
 @media only screen and (min-width: 687px) {
   .column-full {
     width: 50%;

@@ -25,9 +25,9 @@ $input.addEventListener('submit', submitData);
 
 function submitData(event) {
   event.preventDefault();
-  var searchInfo = {
+  var characterSearched = {
     searched: $input.input.value
   };
   $input.reset();
-  console.log(searchInfo);
+  console.log(characterSearched);
 }

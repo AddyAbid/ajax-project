@@ -62,6 +62,14 @@ main {
   margin-top: 1.5rem;
 }
 
+.mb-2rem {
+  margin-bottom: 2rem;
+}
+
+.mb-1rem {
+  margin-bottom: 1rem;
+}
+
 .flex {
   display: flex;
   align-items: center;
@@ -95,4 +103,32 @@ main {
 
 .search:hover {
   cursor: pointer;
+}
+
+.card {
+  width: 90%;
+  background-color: white;
+  border-radius: 8px;
+  margin-left: auto;
+  margin-right: auto;
+  height: 125px;
+}
+
+.center-text {
+  text-align: center;
+}
+
+.results-img {
+  border-top-left-radius: 8px;
+  border-bottom-left-radius: 8px;
+  height: 100%;
+}
+
+img {
+  width: 100%;
+}
+
+ul {
+  list-style: none;
+  padding-left: 0;
 }
