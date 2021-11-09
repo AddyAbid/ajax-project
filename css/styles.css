@@ -1,0 +1,57 @@
+* {
+  font-family: 'Reem Kufi', sans-serif;
+  color: white;
+}
+
+main {
+  height: 100vh;
+}
+
+.container {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.row {
+  display: flex;
+}
+
+.bg-blue {
+  background-color: #192c88;
+}
+
+.bg-gray {
+  background-color: rgb(167, 167, 167);
+}
+
+.mt-mb {
+  margin-top: 0.3rem;
+  margin-bottom: 0.3rem;
+}
+
+.pd-l {
+  padding-left: 1rem;
+}
+
+.select-char-button {
+  margin: 0 auto;
+  width: 90%;
+  height: 125px;
+  border: 1px;
+  border-radius: 10px;
+  background-color: rgb(243, 204, 101);
+}
+
+.select-char-button:hover {
+  cursor: pointer;
+}
+
+.mt-3rem {
+  margin-top: 3rem;
+}
+
+.flex {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
