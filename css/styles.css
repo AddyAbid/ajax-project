@@ -106,22 +106,41 @@ main {
 }
 
 .card {
-  width: 90%;
   background-color: white;
   border-radius: 8px;
-  margin-left: auto;
-  margin-right: auto;
-  height: 125px;
+  margin-left: 1rem;
+  margin-right: 1rem;
+  margin-bottom: 1rem;
+}
+
+.card-no-margin {
+  margin-left: 0;
+  margin-right: 0;
 }
 
 .center-text {
   text-align: center;
 }
 
+.border-none {
+  border: 1px;
+}
+
+.card-text {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
 .results-img {
-  border-top-left-radius: 8px;
-  border-bottom-left-radius: 8px;
-  height: 100%;
+  object-fit: cover;
+}
+
+.flex-wrap {
+  flex-wrap: wrap;
+}
+
+.wrap {
+  flex-wrap: wrap;
 }
 
 img {
