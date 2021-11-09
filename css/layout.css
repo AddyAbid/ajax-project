@@ -1,3 +1,13 @@
+.hidden {
+  display: none;
+}
+
 .column-full {
   width: 100%;
+}
+
+@media only screen and (min-width: 687px) {
+  .column-full {
+    width: 50%;
+  }
 }

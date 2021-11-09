@@ -46,6 +46,10 @@ main {
   cursor: pointer;
 }
 
+.dashboard:hover {
+  cursor: pointer;
+}
+
 .mt-3rem {
   margin-top: 3rem;
 }

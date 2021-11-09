@@ -12,18 +12,18 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Reem+Kufi&family=Roboto:wght@300&display=swap" rel="stylesheet">
 </head>
-<body>
+<body class="select-container">
   <header>
     <div class="nav bg-blue">
-      <div class="row">
-        <div class="column-full">
-          <h2 class="mt-mb pd-l">Who's that Character?!</h2>
+       <div class="row">
+         <div class="column-full select">
+          <h2 class="mt-mb pd-l dashboard select" data-view="dashboard">Who's that Character?!</h2>
+          </div>
         </div>
       </div>
-    </div>
-  </header>
+    </header>
   <main class="bg-gray">
-    <div class="container">
+    <div class="container view" data-view="dashboard">
       <div class="row">
         <div class="column-half">
           <div class="img">
@@ -31,10 +31,22 @@
           </div>
         </div>
         <div class="column-full">
-          <div class="select-char-button mt-3rem flex">
+          <div class="select-char-button select mt-3rem flex" data-view="search-page">
             <h2>Search Characters</h2>
           </div>
         </div>
+      </div>
+    </div>
+    <div class="container view hidden" data-view="search-page">
+      <div class="form-page">
+        <form>
+          <div class="row">
+            <div class="column-full">
+              <label for="search">Search</label>
+              <input type="text" id="search">
+            </div>
+          </div>
+        </form>
       </div>
     </div>
   </main>
