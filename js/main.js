@@ -22,12 +22,14 @@ function swapView(event) {
 var $input = document.querySelector('#searchData');
 
 $input.addEventListener('submit', submitData);
-
+var characterSearched;
 function submitData(event) {
   event.preventDefault();
-  var characterSearched = {
+  characterSearched = {
     searched: $input.input.value
   };
+  document.body.style.backgroundColor = 'rgb(167, 167, 167)';
+  renderChars();
   $input.reset();
 }
 
@@ -36,23 +38,20 @@ function renderChars() {
   xhr.open('GET', 'https://api.disneyapi.dev/characters');
   xhr.responseType = 'json';
   xhr.addEventListener('load', function () {
-    console.log(xhr.status);
-    console.log(xhr.response);
     var charData = xhr.response;
-    for (var key in charData) {
-      var charArray = charData[key];
-      console.log(charArray);
-      for (var i = 0; i < charArray.length; i++) {
-        if (charArray[i].films && charArray[i].films.length !== 0) {
-          console.log(charArray[i]);
-        }
-
+    for (var data in charData) {
+      var dataArray = charData[data];
+    }
+    var $row = document.querySelector('.mb-1rem');
+    for (var i = 0; i < dataArray.length; i++) {
+      if (charData.data[i].name.indexOf(characterSearched.searched.toUpperCase()) !== -1 || charData.data[i].name.indexOf(characterSearched.searched.toUpperCase()) !== -1 || charData.data[i].name === characterSearched) {
+        $row.appendChild(renderSearchResults(charData.data[i]));
       }
     }
-  });
+  }
+  );
   xhr.send();
 }
-renderChars();
 
 /* <div class="results" data-view="results">
   <div class="row  mb-1rem flex-wrap">
@@ -64,27 +63,23 @@ renderChars();
     </div> */
 
 function renderSearchResults(characters) {
-  var $row = document.createElement('div');
-  $row.setAttribute('class', 'row mb-1rem flex-wrap');
 
   var $colFourth = document.createElement('div');
   $colFourth.setAttribute('class', 'col-fourth card');
-  $row.appendChild($colFourth);
 
   var $wrapRow = document.createElement('div');
   $wrapRow.setAttribute('class', 'row wrap');
   $colFourth.appendChild($wrapRow);
 
   var $img = document.createElement('img');
-  $img.setAttribute('src', characters.src);
+  $img.setAttribute('src', characters.imageUrl);
+  $img.setAttribute('class', 'results-img card-no-margin col-25 max-height');
   $wrapRow.appendChild($img);
 
   var $name = document.createElement('h2');
-  $name.setAttribute('class', 'results-img card-no-margin col-25 max-height');
+  $name.setAttribute('class', 'font-black card-text col-full center-text flex');
   $name.textContent = characters.name;
   $wrapRow.appendChild($name);
 
-  return $row;
+  return $colFourth;
 }
-
-var $row = document.querySelector('.results');
