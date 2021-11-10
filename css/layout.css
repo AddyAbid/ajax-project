@@ -79,7 +79,7 @@
 
   .card-text {
     padding-top: 10px;
-    font-size: 1rem;
+    font-size: 0.9rem;
   }
 
   .left-align-form {
@@ -108,5 +108,9 @@
 
   .left-align-form {
     text-align: left;
+  }
+
+  .hide-img {
+    display: none;
   }
 }

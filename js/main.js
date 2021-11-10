@@ -1,8 +1,9 @@
-var $searchCharButton = document.querySelector('.select-container');
+
 var $view = document.querySelectorAll('.view');
 
-$searchCharButton.addEventListener('click', swapView);
-function swapView(event) {
+document.addEventListener('click', viewHandler);
+
+function swapView(viewName) {
   if (!event.target.matches('.select')) {
     return;
   }
@@ -15,14 +16,22 @@ function swapView(event) {
       $view[i].className = 'container view hidden';
     }
   }
-  var currentView = event.target.getAttribute('data-view');
-  data.view = currentView;
+  data.view = viewName;
+}
+
+function viewHandler(event) {
+  if (!event.target.matches('.button')) {
+    return;
+  }
+  swapView(event.target.getAttribute('data-view'));
 }
 
 var $input = document.querySelector('#searchData');
 
 $input.addEventListener('submit', submitData);
+
 var characterSearched;
+
 function submitData(event) {
   event.preventDefault();
   characterSearched = {
@@ -31,9 +40,10 @@ function submitData(event) {
   document.body.style.backgroundColor = 'rgb(167, 167, 167)';
   renderChars();
   $input.reset();
+  swapView(event.target.getAttribute('data-view'));
 }
 
-function renderChars() {
+function renderChars(number) {
   var xhr = new XMLHttpRequest();
   xhr.open('GET', 'https://api.disneyapi.dev/characters');
   xhr.responseType = 'json';
@@ -42,25 +52,28 @@ function renderChars() {
     for (var data in charData) {
       var dataArray = charData[data];
     }
+
     var $row = document.querySelector('.mb-1rem');
     for (var i = 0; i < dataArray.length; i++) {
-      if (charData.data[i].name.indexOf(characterSearched.searched.toUpperCase()) !== -1 || charData.data[i].name.indexOf(characterSearched.searched.toUpperCase()) !== -1 || charData.data[i].name === characterSearched) {
+      var charName = charData.data[i].name;
+      if (charName.toUpperCase().includes(characterSearched.searched) || charName.toLowerCase().includes(characterSearched.searched)) {
         $row.appendChild(renderSearchResults(charData.data[i]));
       }
+
     }
   }
+
   );
   xhr.send();
 }
-
-/* <div class="results" data-view="results">
-  <div class="row  mb-1rem flex-wrap">
-    <div class="col-fourth card">
-      <div class="row wrap">
-        <img src="images/abu.jpeg" class="results-img card-no-margin col-25 max-height">
-        <h2 class ="font-black card-text col-full center-text flex">Abu</h2>
-      </div>
-    </div> */
+// var $nextPageButton = document.querySelector('.align-right');
+// $nextPageButton.addEventListener('click', nextPage);
+// var number = 1;
+// function nextPage(event) {
+//   number++;
+//   console.log(number);
+//   renderChars(number);
+// }
 
 function renderSearchResults(characters) {
 

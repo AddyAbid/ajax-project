@@ -17,7 +17,7 @@
     <div class="nav bg-blue">
        <div class="row">
          <div class="column-full">
-         <button class="bg-blue border-none"><h2 class="mt-mb pd-l dashboard select" data-view="dashboard">Who's that Character?!</h2></button>
+         <button class="bg-blue border-none button"><h2 class="mt-mb pd-l dashboard select button" data-view="dashboard">Who's that Character?!</h2></button>
           </div>
         </div>
       </div>
@@ -25,13 +25,14 @@
   <main class="bg-gray">
     <div class="container view" data-view="dashboard">
       <div class="row">
-        <div class="column-half">
+        <div class="column-full hide-img mt-5rem">
           <div class="img">
+            <img src="images/pngwing.com (1).png">
           </div>
         </div>
         <div class="column-full">
-          <div class="select-char-button select mt-3rem flex" data-view="search-page">
-            <h2 class="select" data-view="search-page">Search Characters</h2>
+          <div class="select-char-button select mt-3rem flex button" data-view="search-page">
+            <button data-view="search-page" class="search-char-button button"><h2 class="select button" data-view="search-page">Search Characters</h2></button>
           </div>
         </div>
       </div>
@@ -42,7 +43,9 @@
           <div class="row">
             <div class="column-100">
               <div class="left-align-form pl-1rem mt-1-5rem">
-                <label for="search" class="font-black">Search</label><br>
+
+                  <label for="search" class="font-black">Search</label><br>
+
                 <input type="text" id="search" name="input" class="border-style font-black">
                 <div class="search-button inline">
                   <button class="search">Submit</button>
@@ -55,6 +58,10 @@
       <div class="results" data-view="results">
         <div class="row  mb-1rem flex-wrap">
         </div>
+        <!--Next page button to give more results.-->
+        <!-- <div class="align-right">
+          <button>next page</button>
+        </div> -->
       </div>
     </div>
   </main>
