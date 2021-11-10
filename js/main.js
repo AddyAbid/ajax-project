@@ -30,20 +30,19 @@ var $input = document.querySelector('#searchData');
 
 $input.addEventListener('submit', submitData);
 
-var characterSearched;
-
 function submitData(event) {
   event.preventDefault();
-  characterSearched = {
+  var characterSearched = {
     searched: $input.input.value
   };
+  var name = characterSearched.searched;
   document.body.style.backgroundColor = 'rgb(167, 167, 167)';
-  renderChars();
+  renderChars(name);
   $input.reset();
   swapView(event.target.getAttribute('data-view'));
 }
 
-function renderChars(number) {
+function renderChars(name) {
   var xhr = new XMLHttpRequest();
   xhr.open('GET', 'https://api.disneyapi.dev/characters');
   xhr.responseType = 'json';
@@ -56,9 +55,9 @@ function renderChars(number) {
     var $row = document.querySelector('.mb-1rem');
     for (var i = 0; i < dataArray.length; i++) {
       var charName = charData.data[i].name;
-      if (charName.toUpperCase().includes(characterSearched.searched) || charName.toLowerCase().includes(characterSearched.searched)) {
+      if (charName.toUpperCase().includes(name) || charName.toLowerCase().includes(name)) {
         $row.appendChild(renderSearchResults(charData.data[i]));
-      } else if (charName.toUpperCase() === characterSearched.searched || charName.toLowerCase() === characterSearched.searched) {
+      } else if (charName.toUpperCase() === name || charName.toLowerCase() === name) {
         $row.appendChild(renderSearchResults(charData.data[i]));
       }
     }
@@ -67,14 +66,6 @@ function renderChars(number) {
   );
   xhr.send();
 }
-// var $nextPageButton = document.querySelector('.align-right');
-// $nextPageButton.addEventListener('click', nextPage);
-// var number = 1;
-// function nextPage(event) {
-//   number++;
-//   console.log(number);
-//   renderChars(number);
-// }
 
 function renderSearchResults(characters) {
 
