@@ -58,8 +58,9 @@ function renderChars(number) {
       var charName = charData.data[i].name;
       if (charName.toUpperCase().includes(characterSearched.searched) || charName.toLowerCase().includes(characterSearched.searched)) {
         $row.appendChild(renderSearchResults(charData.data[i]));
+      } else if (charName.toUpperCase() === characterSearched.searched || charName.toLowerCase() === characterSearched.searched) {
+        $row.appendChild(renderSearchResults(charData.data[i]));
       }
-
     }
   }
 
