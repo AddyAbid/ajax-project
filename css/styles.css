@@ -182,6 +182,10 @@
   flex-wrap: wrap;
 }
 
+.form-input:focus {
+  outline: none;
+}
+
 img {
   width: 100%;
 }
