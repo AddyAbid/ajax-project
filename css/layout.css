@@ -97,6 +97,22 @@
   .form-input {
     width: 62%;
   }
+
+  .hide-big {
+    display: none;
+  }
+
+  .game-card {
+    width: 80%;
+    background-color: rgba(255, 255, 255, 0.78);
+    margin: 0 auto;
+    height: 23rem;
+  }
+
+  .lg-game-img {
+    max-height: 20rem;
+    object-fit: fill;
+  }
 }
 
 @media only screen and (max-width: 687px) {
@@ -148,5 +164,11 @@
 
   .order-2 {
     order: 1;
+  }
+
+  .game-card {
+    width: 80%;
+    background-color: rgba(255, 255, 255, 0.78);
+    margin: 0 auto;
   }
 }

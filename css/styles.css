@@ -127,7 +127,7 @@
   padding: 15px 0;
   border: none;
   background-color: rgb(62, 62, 62);
-  border-radius: 8px;
+  border-radius: 10px;
 }
 
 .select:hover {
@@ -155,6 +155,10 @@
 .card-no-margin {
   margin-left: 0;
   margin-right: 0;
+}
+
+.game-card-text {
+  margin-top: 0;
 }
 
 .center-text {
