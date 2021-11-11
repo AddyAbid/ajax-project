@@ -51,14 +51,14 @@ function getCharacterData(name) {
   var xhr = new XMLHttpRequest();
   xhr.open('GET', 'https://rickandmortyapi.com/api/character/?name=' + name);
   xhr.responseType = 'json';
-  xhr.addEventListener('load', function (name) {
+  xhr.addEventListener('load', function () {
     var matchingCharacters = xhr.response.results;
-
     var position = document.querySelector('.mb-1rem');
     for (var i = 0; i < matchingCharacters.length; i++) {
       position.appendChild(renderSearchResults(matchingCharacters[i]));
     }
-  });
+  }
+  );
   xhr.send();
 }
 
