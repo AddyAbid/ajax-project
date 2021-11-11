@@ -12,56 +12,55 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Reem+Kufi&family=Roboto:wght@300&display=swap" rel="stylesheet">
 </head>
-<body class="select-container">
+<body class="select-container bg-img">
   <header>
-    <div class="nav bg-blue">
-       <div class="row">
-         <div class="column-full">
-         <button class="bg-blue border-none button"><h2 class="mt-mb pd-l dashboard select button" data-view="dashboard">Who's that Character?!</h2></button>
-          </div>
-        </div>
+    <div class="nav row">
+      <div class="column-20 center-text order-1" data-view="dashboard">
+        <button class="current-page-button select button home" data-view="dashboard"><a class="reem-font-white select button home" data-view="dashboard">Home</a></button>
       </div>
-    </header>
-  <main class="bg-gray">
+      <div class="column-20 center-text hide">
+        <a class="reem-font">Play Game</a>
+      </div>
+      <div class="column-20 center-text">
+        <a class="get-schwifty-font">Guess That Rick</a>
+      </div>
+      <div class="column-20 center-text hide">
+        <a class="reem-font">My Characters</a>
+      </div>
+      <div class="column-20 center-text hide">
+        <a class="reem-font">My Custom Games</a>
+      </div>
+    </div>
+  </header>
+  <main>
     <div class="container view" data-view="dashboard">
       <div class="row">
-        <div class="column-full hide-img mt-5rem">
-          <div class="img">
-            <img src="images/pngwing.com (1).png">
-          </div>
-        </div>
-        <div class="column-full">
-          <div class="select-char-button select mt-3rem flex button" data-view="search-page">
-            <button data-view="search-page" class="search-char-button button"><h2 class="select button" data-view="search-page">Search Characters</h2></button>
-          </div>
+        <div class="column-full hide"></div>
+        <div class="column-full order-2">
+          <h2 class="center-left-text reem-font mt-mb dash-font-size">Rick &amp; Morty</h2>
+          <h2 class="center-left-text reem-font mt dash-font-size">Character Guessing Game</h2>
+          <p class="reem-font center-left-text">Search your favorite characters here!</p>
+          <form class="center-left-text" id="searchData">
+            <label for="search"></label>
+            <input type="text"
+                   required
+                   name="input"
+                   id="search"
+                   class="form-input">
+            <button class="search-button reem-font-white select button submit" type="submit" data-view="results">Submit</button>
+          </form>
+          <!-- <div class="center-text mt-3rem">
+            <button class="play-game-button reem-font-white">Play Game</button>
+          </div> -->
         </div>
       </div>
     </div>
-    <div class="container view hidden" data-view="search-page">
-      <div class="form-page">
-        <form id="searchData" class="mb-2rem">
-          <div class="row">
-            <div class="column-100">
-              <div class="left-align-form pl-1rem mt-1-5rem">
+    <div class="container view hidden" data-view="results">
 
-                  <label for="search" class="font-black">Search</label><br>
-
-                <input type="text" id="search" name="input" class="border-style font-black">
-                <div class="search-button inline">
-                  <button class="search">Submit</button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </form>
-      </div>
       <div class="results" data-view="results">
-        <div class="row  mb-1rem flex-wrap">
-        </div>
-        <!--Next page button to give more results.-->
-        <!-- <div class="align-right">
-          <button>next page</button>
-        </div> -->
+        <div class="row  mb-1rem flex-wrap pt-3rem">
+
+          </div>
       </div>
     </div>
   </main>

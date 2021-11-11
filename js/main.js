@@ -16,8 +16,13 @@ function swapView(viewName) {
       $view[i].className = 'container view hidden';
     }
   }
+  if (event.target.matches('.home')) {
+    var position = document.querySelector('.mb-1rem');
+    position.textContent = '';
+  }
   data.view = viewName;
 }
+document.addEventListener('DOMContentLoaded', renderSearchResults);
 
 function viewHandler(event) {
   if (!event.target.matches('.button')) {
@@ -32,38 +37,28 @@ $input.addEventListener('submit', submitData);
 
 function submitData(event) {
   event.preventDefault();
+  swapView(data.view);
   var characterSearched = {
     searched: $input.input.value
   };
   var name = characterSearched.searched;
-  document.body.style.backgroundColor = 'rgb(167, 167, 167)';
-  renderChars(name);
+
+  getCharacterData(name);
   $input.reset();
-  swapView(event.target.getAttribute('data-view'));
 }
 
-function renderChars(name) {
+function getCharacterData(name) {
   var xhr = new XMLHttpRequest();
-  xhr.open('GET', 'https://api.disneyapi.dev/characters');
+  xhr.open('GET', 'https://rickandmortyapi.com/api/character/?name=' + name);
   xhr.responseType = 'json';
-  xhr.addEventListener('load', function () {
-    var charData = xhr.response;
-    for (var data in charData) {
-      var dataArray = charData[data];
-    }
+  xhr.addEventListener('load', function (name) {
+    var matchingCharacters = xhr.response.results;
 
-    var $row = document.querySelector('.mb-1rem');
-    for (var i = 0; i < dataArray.length; i++) {
-      var charName = charData.data[i].name;
-      if (charName.toUpperCase().includes(name) || charName.toLowerCase().includes(name)) {
-        $row.appendChild(renderSearchResults(charData.data[i]));
-      } else if (charName.toUpperCase() === name || charName.toLowerCase() === name) {
-        $row.appendChild(renderSearchResults(charData.data[i]));
-      }
+    var position = document.querySelector('.mb-1rem');
+    for (var i = 0; i < matchingCharacters.length; i++) {
+      position.appendChild(renderSearchResults(matchingCharacters[i]));
     }
-  }
-
-  );
+  });
   xhr.send();
 }
 
@@ -77,12 +72,12 @@ function renderSearchResults(characters) {
   $colFourth.appendChild($wrapRow);
 
   var $img = document.createElement('img');
-  $img.setAttribute('src', characters.imageUrl);
+  $img.setAttribute('src', characters.image);
   $img.setAttribute('class', 'results-img card-no-margin col-25 max-height');
   $wrapRow.appendChild($img);
 
   var $name = document.createElement('h2');
-  $name.setAttribute('class', 'font-black card-text col-full center-text flex');
+  $name.setAttribute('class', 'reem-font card-text col-full center-text flex');
   $name.textContent = characters.name;
   $wrapRow.appendChild($name);
 

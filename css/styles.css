@@ -1,15 +1,47 @@
-* {
+.reem-font {
+  font-family: 'Reem Kufi', sans-serif;
+  color: rgb(62, 62, 62);
+}
+
+.reem-font-white {
   font-family: 'Reem Kufi', sans-serif;
   color: white;
 }
 
-main {
-  height: 100vh;
+@font-face {
+  font-family: 'get-schwifty';
+  src: url("../get_schwifty.ttf");
+}
+
+.current-page-button {
+  background-color: rgb(62, 62, 62);
+  padding: 8px 40px;
+  border: none;
+  border-radius: 15px;
+}
+
+.nav {
+  padding-top: 2rem;
+  color: rgb(62, 62, 62);
+}
+
+.get-schwifty-font {
+  font-family: 'get-schwifty', sans-serif;
+  font-size: 2rem;
 }
 
 .container {
   max-width: 1000px;
   margin: 0 auto;
+}
+
+.bg-img {
+  background-image: url(../images/backdrop.png);
+  height: 100vh;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
 }
 
 .row {
@@ -20,17 +52,13 @@ main {
   color: black;
 }
 
-.bg-blue {
-  background-color: #192c88;
-}
-
-.bg-gray {
-  background-color: rgb(167, 167, 167);
-}
-
 .mt-mb {
-  margin-top: 0.3rem;
-  margin-bottom: 0.3rem;
+  margin-top: 5rem;
+  margin-bottom: 0;
+}
+
+.mt {
+  margin-top: 0;
 }
 
 .mt-5rem {
@@ -43,15 +71,6 @@ main {
 
 .align-right {
   text-align: right;
-}
-
-.select-char-button {
-  margin: 0 auto;
-  width: 90%;
-  height: 125px;
-  border: 1px;
-  border-radius: 10px;
-  background-color: rgb(243, 204, 101);
 }
 
 .select-char-button:hover {
@@ -95,23 +114,39 @@ main {
   font-size: 1.2rem;
 }
 
-.search {
-  border-radius: 5px;
-  border: 1px;
-  background-color: #192c88;
-  color: white;
-  text-align: center;
-  padding: 6px 15px;
-  margin-left: 1rem;
+.search-button {
+  padding: 3px 10px;
+  border: none;
+  background-color: rgb(62, 62, 62);
+  border-radius: 8px;
+  font-size: 1rem;
 }
 
-.search:hover {
+.play-game-button {
+  width: 50%;
+  padding: 15px 0;
+  border: none;
+  background-color: rgb(62, 62, 62);
+  border-radius: 8px;
+}
+
+.select:hover {
   cursor: pointer;
 }
 
+.form-input {
+  font-size: 1.2rem;
+  border: 1px;
+  border-radius: 5px;
+}
+
+.pt-3rem {
+  padding-top: 3rem;
+}
+
 .card {
-  background-color: white;
-  border-radius: 8px;
+  background-color: rgba(255, 255, 255, 0.78);
+  border-radius: 5px;
   margin-left: 1rem;
   margin-right: 1rem;
   margin-bottom: 1rem;
@@ -145,15 +180,6 @@ main {
 
 .wrap {
   flex-wrap: wrap;
-}
-
-.search-char-button {
-  background-color: rgb(243, 204, 101);
-  border: none;
-}
-
-.search-char-button:hover {
-  cursor: pointer;
 }
 
 img {
