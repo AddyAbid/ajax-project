@@ -161,6 +161,21 @@
   margin-top: 0;
 }
 
+.pd-tb {
+  padding: 5px 0;
+}
+
+.option-text {
+  background-color: rgba(255, 255, 255, 0.842);
+  width: 80%;
+  margin: 0 auto;
+  border-radius: 8px;
+}
+
+.margin-auto {
+  margin: 0 auto;
+}
+
 .center-text {
   text-align: center;
 }
