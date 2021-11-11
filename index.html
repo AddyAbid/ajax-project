@@ -8,11 +8,61 @@
   <link rel="stylesheet" href="css/reset.css">
   <link rel="stylesheet" href="css/layout.css">
   <link rel="stylesheet" href="css/styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Reem+Kufi&family=Roboto:wght@300&display=swap" rel="stylesheet">
 </head>
-<body>
+<body class="select-container bg-img">
   <header>
+    <div class="nav row">
+      <div class="column-20 center-text order-1" data-view="dashboard">
+        <button class="current-page-button select button home" data-view="dashboard"><a class="reem-font-white select button home" data-view="dashboard">Home</a></button>
+      </div>
+      <div class="column-20 center-text hide">
+        <a class="reem-font">Play Game</a>
+      </div>
+      <div class="column-20 center-text">
+        <a class="get-schwifty-font">Guess That Rick</a>
+      </div>
+      <div class="column-20 center-text hide">
+        <a class="reem-font">My Characters</a>
+      </div>
+      <div class="column-20 center-text hide">
+        <a class="reem-font">My Custom Games</a>
+      </div>
+    </div>
   </header>
   <main>
+    <div class="container view" data-view="dashboard">
+      <div class="row">
+        <div class="column-full hide"></div>
+        <div class="column-full order-2">
+          <h2 class="center-left-text reem-font mt-mb dash-font-size">Rick &amp; Morty</h2>
+          <h2 class="center-left-text reem-font mt dash-font-size">Character Guessing Game</h2>
+          <p class="reem-font center-left-text">Search your favorite characters here!</p>
+          <form class="center-left-text" id="searchData">
+            <label for="search"></label>
+            <input type="text"
+                   required
+                   name="input"
+                   id="search"
+                   class="form-input">
+            <button class="search-button reem-font-white select button submit" type="submit" data-view="results">Submit</button>
+          </form>
+          <!-- <div class="center-text mt-3rem">
+            <button class="play-game-button reem-font-white">Play Game</button>
+          </div> -->
+        </div>
+      </div>
+    </div>
+    <div class="container view hidden" data-view="results">
+
+      <div class="results" data-view="results">
+        <div class="row  mb-1rem flex-wrap pt-3rem">
+
+          </div>
+      </div>
+    </div>
   </main>
   <script src="js/data.js"></script>
   <script src="js/main.js"></script>

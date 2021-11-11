@@ -1,0 +1,196 @@
+.reem-font {
+  font-family: 'Reem Kufi', sans-serif;
+  color: rgb(62, 62, 62);
+}
+
+.reem-font-white {
+  font-family: 'Reem Kufi', sans-serif;
+  color: white;
+}
+
+@font-face {
+  font-family: 'get-schwifty';
+  src: url("../get_schwifty.ttf");
+}
+
+.current-page-button {
+  background-color: rgb(62, 62, 62);
+  padding: 8px 40px;
+  border: none;
+  border-radius: 15px;
+}
+
+.nav {
+  padding-top: 2rem;
+  color: rgb(62, 62, 62);
+}
+
+.get-schwifty-font {
+  font-family: 'get-schwifty', sans-serif;
+  font-size: 2rem;
+}
+
+.container {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.bg-img {
+  background-image: url(../images/backdrop.png);
+  height: 100vh;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+}
+
+.row {
+  display: flex;
+}
+
+.font-black {
+  color: black;
+}
+
+.mt-mb {
+  margin-top: 5rem;
+  margin-bottom: 0;
+}
+
+.mt {
+  margin-top: 0;
+}
+
+.mt-5rem {
+  margin-top: 5rem;
+}
+
+.pd-l {
+  padding-left: 1rem;
+}
+
+.align-right {
+  text-align: right;
+}
+
+.select-char-button:hover {
+  cursor: pointer;
+}
+
+.dashboard:hover {
+  cursor: pointer;
+}
+
+.mt-3rem {
+  margin-top: 3rem;
+}
+
+.mt-1-5rem {
+  margin-top: 1.5rem;
+}
+
+.mb-2rem {
+  margin-bottom: 2rem;
+}
+
+.mb-1rem {
+  margin-bottom: 1rem;
+}
+
+.flex {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pl-1rem {
+  padding-left: 1rem;
+}
+
+.border-style {
+  border: 1px;
+  border-radius: 5px;
+  width: 70%;
+  font-size: 1.2rem;
+}
+
+.search-button {
+  padding: 3px 10px;
+  border: none;
+  background-color: rgb(62, 62, 62);
+  border-radius: 8px;
+  font-size: 1rem;
+}
+
+.play-game-button {
+  width: 50%;
+  padding: 15px 0;
+  border: none;
+  background-color: rgb(62, 62, 62);
+  border-radius: 8px;
+}
+
+.select:hover {
+  cursor: pointer;
+}
+
+.form-input {
+  font-size: 1.2rem;
+  border: 1px;
+  border-radius: 5px;
+}
+
+.pt-3rem {
+  padding-top: 3rem;
+}
+
+.card {
+  background-color: rgba(255, 255, 255, 0.78);
+  border-radius: 5px;
+  margin-left: 1rem;
+  margin-right: 1rem;
+  margin-bottom: 1rem;
+}
+
+.card-no-margin {
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.center-text {
+  text-align: center;
+}
+
+.border-none {
+  border: 1px;
+}
+
+.card-text {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.results-img {
+  object-fit: cover;
+}
+
+.flex-wrap {
+  flex-wrap: wrap;
+}
+
+.wrap {
+  flex-wrap: wrap;
+}
+
+.form-input:focus {
+  outline: none;
+}
+
+img {
+  width: 100%;
+}
+
+ul {
+  list-style: none;
+  padding-left: 0;
+}
