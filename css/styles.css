@@ -114,8 +114,21 @@
   font-size: 1.2rem;
 }
 
+.border-radius {
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+
 .search-button {
   padding: 3px 10px;
+  border: none;
+  background-color: rgb(62, 62, 62);
+  border-radius: 8px;
+  font-size: 1rem;
+}
+
+.next-button {
+  padding: 3px 20px;
   border: none;
   background-color: rgb(62, 62, 62);
   border-radius: 8px;
@@ -128,6 +141,10 @@
   border: none;
   background-color: rgb(62, 62, 62);
   border-radius: 10px;
+}
+
+.next-button:hover {
+  cursor: pointer;
 }
 
 .select:hover {

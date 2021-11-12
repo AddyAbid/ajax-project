@@ -19,7 +19,7 @@
         <button class="current-page-button select button home" data-view="dashboard"><a class="reem-font-white select button home" data-view="dashboard">Home</a></button>
       </div>
       <div class="column-20 center-text hide" data-view="game-view">
-      <button class="current-page-button select button home" data-view="game-view"> <a class="reem-font-white select button" data-view="game-view">Play Game</a></button>
+      <button class="current-page-button select button home game-button-desktop" data-view="game-view"> <a class="game-button-desktop reem-font-white select button" data-view="game-view">Play Game</a></button>
       </div>
       <div class="column-20 center-text">
         <a class="get-schwifty-font">Guess That Rick</a>
@@ -50,7 +50,7 @@
             <button class="search-button reem-font-white select button submit" type="submit" data-view="results">Submit</button>
           </form>
           <div class="center-text mt-3rem">
-            <button class="play-game-button reem-font-white select button hide-big" data-view="game-view">Play Game</button>
+            <button class="play-game-button game-button-mobile reem-font-white select button hide-big" data-view="game-view">Play Game</button>
           </div>
         </div>
       </div>
@@ -59,53 +59,15 @@
 
       <div class="results" data-view="results">
         <div class="row  mb-1rem flex-wrap pt-3rem">
-
+          <h2 class="if-no-results reem-font"></h2>
           </div>
       </div>
     </div>
     <div class="container view hidden" data-view="game-view">
-      <div data-view="game-view">
-        <div class="row">
-          <div class="column-100 pt-3rem">
-            <div class="game-card">
-              <img src="https://rickandmortyapi.com/api/character/avatar/361.jpeg" class="lg-game-img">
-              <h2 class="reem-font center-text game-card-text">What is the name of this character?</h2>
-            </div>
-          </div>
-        </div>
-      <div class="row">
-        <div class="column-100">
-          <div class="option-text center-text ">
-            <h3 class="reem-font pd-tb">Summer Smith</h3>
-          </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="column-100">
-          <div class="option-text center-text ">
-            <h3 class="reem-font pd-tb">Calypso</h3>
-          </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="column-100">
-          <div class="option-text center-text ">
-            <h3 class="reem-font pd-tb">Toxic Rick</h3>
-          </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="column-100">
-          <div class="option-text center-text ">
-            <h3 class="reem-font pd-tb">Evil Rick</h3>
-          </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="column-80 align-right margin-auto">
-          <button class="next-button">Next</button>
-        </div>
-      </div>
+      <div data-view="game-view" class="parent-game-row">
+    </div>
+    <div class="column-80 align-right margin-auto">
+      <button class=" reem-font-white next-button">Next</button>
     </div>
     </div>
   </main>
