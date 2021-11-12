@@ -103,6 +103,26 @@
   justify-content: center;
 }
 
+.overlay {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+.modal-box {
+  background-color: white;
+  position: fixed;
+  width: 400px;
+  height: 150px;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 5px;
+}
+
 .pl-1rem {
   padding-left: 1rem;
 }
@@ -187,6 +207,10 @@
   width: 80%;
   margin: 0 auto;
   border-radius: 8px;
+}
+
+.option-text:hover {
+  cursor: pointer;
 }
 
 .margin-auto {

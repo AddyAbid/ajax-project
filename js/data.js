@@ -1,6 +1,8 @@
 /* exported data */
 var data = {
-  view: 'dashboard'
+  view: 'dashboard',
+  quizResultsTrue: 0,
+  quizResultsFalse: 0
 };
 var previousSearchJSON = localStorage.getItem('search-page');
 if (previousSearchJSON !== null) {

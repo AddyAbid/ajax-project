@@ -63,6 +63,7 @@ function getCharacterData(name) {
   );
   xhr.send();
 }
+
 function getRandomChar(randomNumArray) {
   var xhr = new XMLHttpRequest();
   xhr.open('GET', 'https://rickandmortyapi.com/api/character');
@@ -77,10 +78,39 @@ function getRandomChar(randomNumArray) {
     for (var i = 0; i < eachChar.length; i++) {
       var $gameTopElement = document.querySelector('.parent-game-row');
     }
-    $gameTopElement.appendChild(renderRandomGame(eachChar));
+    var randomIndex = Math.floor(Math.random() * eachChar.length);
+    $gameTopElement.appendChild(renderRandomGame(eachChar, randomIndex));
+    console.log(eachChar);
+
+    var gameOptions = document.querySelector('.parent-game-row');
+    gameOptions.addEventListener('click', clickAnswer);
+    gameOptions.addEventListener('click', renderRandomGame);
+    var rightAnswer = 0;
+    var wrongAnswer = 0;
+
+    function clickAnswer(event) {
+
+      if (event.target.tagName === 'H3' && event.target.textContent === eachChar[randomIndex].name) {
+        rightAnswer++;
+        console.log('right', rightAnswer);
+        event.target.style.backgroundColor = 'green';
+        event.target.style.borderRadius = '8px';
+        event.target.style.color = 'white';
+
+      } else if (event.target.tageName === 'H3' && event.target.textContent !== eachChar[randomIndex].name) {
+        wrongAnswer++;
+        console.log('wrong', wrongAnswer);
+        event.target.style.backgroundColor = 'red';
+        event.target.style.borderRadius = '8px';
+        event.target.style.color = 'white';
+
+      }
+    }
+
   });
   xhr.send();
 }
+
 var $gameButtonMobile = document.querySelector('.game-button-mobile');
 var $gameButtonDesktop = document.querySelector('.game-button-desktop');
 
@@ -88,6 +118,7 @@ $gameButtonMobile.addEventListener('click', generateRandom);
 $gameButtonDesktop.addEventListener('click', generateRandom);
 
 function generateRandom(event) {
+
   submitRandom(0, 19);
   $gameContainer.textContent = '';
 }
@@ -122,9 +153,7 @@ function renderSearchResults(characters) {
   return $colFourth;
 }
 
-function renderRandomGame(chars) {
-
-  var randomIndex = Math.floor(Math.random() * chars.length);
+function renderRandomGame(chars, index) {
 
   var $gameContentDiv = document.createElement('div');
   $gameContentDiv.setAttribute('class', 'parent-game-row');
@@ -142,7 +171,7 @@ function renderRandomGame(chars) {
   $imgCol.appendChild($imgCard);
 
   var $img = document.createElement('img');
-  $img.setAttribute('src', chars[randomIndex].image);
+  $img.setAttribute('src', chars[index].image);
   $img.setAttribute('class', 'border-radius lg-game-img');
   $imgCard.appendChild($img);
 
@@ -225,3 +254,14 @@ function renderRandomGame(chars) {
 var $nextButton = document.querySelector('.next-button');
 var $gameContainer = document.querySelector('.parent-game-row');
 $nextButton.addEventListener('click', generateRandom);
+
+$nextButton.addEventListener('click', showModalScore);
+var $modal = document.querySelector('.modal');
+var questionCounter = 0;
+
+function showModalScore(event) {
+  questionCounter++;
+  if (questionCounter === 10) {
+    $modal.classList.remove('hidden');
+  }
+}
