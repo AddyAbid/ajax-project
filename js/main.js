@@ -66,7 +66,7 @@ function getCharacterData(name) {
 
 function getRandomChar(randomNumArray) {
   var xhr = new XMLHttpRequest();
-  xhr.open('GET', 'https://rickandmortyapi.com/api/character');
+  xhr.open('GET', 'https://rickandmortyapi.com/api/character?page=' + generateSingleRandomNumber(0, 41));
   xhr.responseType = 'json';
   xhr.addEventListener('load', function () {
     var eachChar = [];
@@ -75,36 +75,35 @@ function getRandomChar(randomNumArray) {
       var allAnswers = matchingCharacters[randomNumArray[j]];
       eachChar.push(allAnswers);
     }
-    for (var i = 0; i < eachChar.length; i++) {
-      var $gameTopElement = document.querySelector('.parent-game-row');
-    }
+
     var randomIndex = Math.floor(Math.random() * eachChar.length);
-    $gameTopElement.appendChild(renderRandomGame(eachChar, randomIndex));
-    console.log(eachChar);
 
     var gameOptions = document.querySelector('.parent-game-row');
+    gameOptions.appendChild(renderRandomGame(eachChar, randomIndex));
     gameOptions.addEventListener('click', clickAnswer);
     gameOptions.addEventListener('click', renderRandomGame);
-    var rightAnswer = 0;
-    var wrongAnswer = 0;
+    gameOptions.addEventListener('click', getRandomChar);
 
     function clickAnswer(event) {
 
-      if (event.target.tagName === 'H3' && event.target.textContent === eachChar[randomIndex].name) {
+      if (event.target.tagName !== 'H3') {
+        return;
+      }
+      if (event.target.textContent === eachChar[randomIndex].name) {
         rightAnswer++;
-        console.log('right', rightAnswer);
+
         event.target.style.backgroundColor = 'green';
         event.target.style.borderRadius = '8px';
         event.target.style.color = 'white';
+      } else {
 
-      } else if (event.target.tageName === 'H3' && event.target.textContent !== eachChar[randomIndex].name) {
-        wrongAnswer++;
-        console.log('wrong', wrongAnswer);
         event.target.style.backgroundColor = 'red';
         event.target.style.borderRadius = '8px';
         event.target.style.color = 'white';
 
       }
+      gameOptions.removeEventListener('click', clickAnswer);
+
     }
 
   });
@@ -118,7 +117,6 @@ $gameButtonMobile.addEventListener('click', generateRandom);
 $gameButtonDesktop.addEventListener('click', generateRandom);
 
 function generateRandom(event) {
-
   submitRandom(0, 19);
   $gameContainer.textContent = '';
 }
@@ -126,9 +124,13 @@ function generateRandom(event) {
 function submitRandom(min, max) {
   var randomArr = [];
   for (var i = 0; i < 4; i++) {
-    randomArr.push(Math.floor(Math.random() * max) + min);
+    randomArr.push(generateSingleRandomNumber(min, max));
   }
   getRandomChar(randomArr);
+}
+
+function generateSingleRandomNumber(min, max) {
+  return Math.floor(Math.random() * max - min) + min;
 }
 
 function renderSearchResults(characters) {
@@ -253,15 +255,51 @@ function renderRandomGame(chars, index) {
 
 var $nextButton = document.querySelector('.next-button');
 var $gameContainer = document.querySelector('.parent-game-row');
-$nextButton.addEventListener('click', generateRandom);
-
-$nextButton.addEventListener('click', showModalScore);
+var $dashboardButton = document.querySelector('.dash-button');
+var $playAgain = document.querySelector('.play-again-button');
 var $modal = document.querySelector('.modal');
+
+$nextButton.addEventListener('click', generateRandom);
+$nextButton.addEventListener('click', showModalScore);
+$dashboardButton.addEventListener('click', modalOptions);
+$playAgain.addEventListener('click', generateRandomNewGame);
+
+var rightAnswer = 0;
 var questionCounter = 0;
+
+var $score = document.querySelector('.number');
 
 function showModalScore(event) {
   questionCounter++;
   if (questionCounter === 10) {
+    questionCounter = 0;
+
     $modal.classList.remove('hidden');
   }
+  $score.textContent = String(rightAnswer) + '/ 10';
+
+}
+
+function modalOptions(event) {
+  if (!event.target.matches('.select')) {
+    return;
+  }
+  $modal.classList.add('hidden');
+  for (var i = 0; i < $view.length; i++) {
+    var $dataView = event.target.getAttribute('data-view');
+    var $newView = $view[i].getAttribute('data-view');
+    if ($dataView === $newView) {
+      $view[i].className = 'container view';
+    } else {
+      $view[i].className = 'container view hidden';
+    }
+  }
+
+}
+function generateRandomNewGame(event) {
+  rightAnswer = 0;
+  $modal.classList.add('hidden');
+
+  submitRandom(0, 19);
+  $gameContainer.textContent = '';
 }

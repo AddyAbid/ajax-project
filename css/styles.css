@@ -44,6 +44,19 @@
   background-attachment: fixed;
 }
 
+.modal-style-button {
+  font-size: 1rem;
+  background-color: #00a5be;
+  padding: 5px 15px;
+  border: none;
+  border-radius: 8px;
+  color: white;
+}
+
+.modal-style-button:hover {
+  cursor: pointer;
+}
+
 .row {
   display: flex;
 }
@@ -121,6 +134,14 @@
   top: 50%;
   transform: translate(-50%, -50%);
   border-radius: 5px;
+}
+
+.score {
+  text-align: center;
+}
+
+.number {
+  color: #00a5be;
 }
 
 .pl-1rem {
