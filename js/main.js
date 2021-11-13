@@ -63,7 +63,7 @@ function getCharacterData(name) {
   );
   xhr.send();
 }
-
+var timerId = null;
 function getRandomChar(randomNumArray) {
   var xhr = new XMLHttpRequest();
   xhr.open('GET', 'https://rickandmortyapi.com/api/character?page=' + generateSingleRandomNumber(0, 41));
@@ -85,7 +85,7 @@ function getRandomChar(randomNumArray) {
     gameOptions.addEventListener('click', getRandomChar);
 
     function clickAnswer(event) {
-
+      timerId = setTimeout(generateRandom, 1000);
       if (event.target.tagName !== 'H3') {
         return;
       }
@@ -103,9 +103,14 @@ function getRandomChar(randomNumArray) {
 
       }
       gameOptions.removeEventListener('click', clickAnswer);
-
+      questionCounter++;
+      if (questionCounter === 10) {
+        questionCounter = 0;
+        $modal.classList.remove('hidden');
+        $score.textContent = String(rightAnswer) + '/ 10';
+        clearInterval(timerId);
+      }
     }
-
   });
   xhr.send();
 }
@@ -253,14 +258,11 @@ function renderRandomGame(chars, index) {
   return $gameContentDiv;
 }
 
-var $nextButton = document.querySelector('.next-button');
 var $gameContainer = document.querySelector('.parent-game-row');
 var $dashboardButton = document.querySelector('.dash-button');
 var $playAgain = document.querySelector('.play-again-button');
 var $modal = document.querySelector('.modal');
 
-$nextButton.addEventListener('click', generateRandom);
-$nextButton.addEventListener('click', showModalScore);
 $dashboardButton.addEventListener('click', modalOptions);
 $playAgain.addEventListener('click', generateRandomNewGame);
 
@@ -268,17 +270,6 @@ var rightAnswer = 0;
 var questionCounter = 0;
 
 var $score = document.querySelector('.number');
-
-function showModalScore(event) {
-  questionCounter++;
-  if (questionCounter === 10) {
-    questionCounter = 0;
-
-    $modal.classList.remove('hidden');
-  }
-  $score.textContent = String(rightAnswer) + '/ 10';
-
-}
 
 function modalOptions(event) {
   if (!event.target.matches('.select')) {
