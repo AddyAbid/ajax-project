@@ -160,104 +160,6 @@ function renderSearchResults(characters) {
   return $colFourth;
 }
 
-function renderRandomGame(chars, index) {
-
-  var $gameContentDiv = document.createElement('div');
-  $gameContentDiv.setAttribute('class', 'parent-game-row');
-
-  var $imgRow = document.createElement('div');
-  $imgRow.setAttribute('class', 'row');
-  $gameContentDiv.appendChild($imgRow);
-
-  var $imgCol = document.createElement('div');
-  $imgCol.setAttribute('class', 'column-100 pt-3rem');
-  $imgRow.appendChild($imgCol);
-
-  var $imgCard = document.createElement('div');
-  $imgCard.setAttribute('class', 'game-card border-radius');
-  $imgCol.appendChild($imgCard);
-
-  var $img = document.createElement('img');
-  $img.setAttribute('src', chars[index].image);
-  $img.setAttribute('class', 'border-radius lg-game-img');
-  $imgCard.appendChild($img);
-
-  var $gameQuestion = document.createElement('h2');
-  $gameQuestion.setAttribute('class', 'reem-font center-text game-card-text');
-  $gameQuestion.textContent = 'What is the name of this character?!';
-  $imgCard.appendChild($gameQuestion);
-
-  var $firstOptionRow = document.createElement('div');
-  $firstOptionRow.setAttribute('class', 'row');
-  $gameContentDiv.appendChild($firstOptionRow);
-
-  var $firstCol = document.createElement('div');
-  $firstCol.setAttribute('class', 'column-100');
-  $firstOptionRow.appendChild($firstCol);
-
-  var $firstDiv = document.createElement('div');
-  $firstDiv.setAttribute('class', 'option-text center-text');
-  $firstCol.appendChild($firstDiv);
-
-  var $firstOption = document.createElement('h3');
-  $firstOption.setAttribute('class', 'reem-font pd-tb');
-  $firstOption.textContent = chars[0].name;
-  $firstDiv.appendChild($firstOption);
-
-  var $secondOptionRow = document.createElement('div');
-  $secondOptionRow.setAttribute('class', 'row');
-  $gameContentDiv.appendChild($secondOptionRow);
-
-  var $secondCol = document.createElement('div');
-  $secondCol.setAttribute('class', 'column-100');
-  $secondOptionRow.appendChild($secondCol);
-
-  var $secondDiv = document.createElement('div');
-  $secondDiv.setAttribute('class', 'option-text center-text');
-  $secondCol.appendChild($secondDiv);
-
-  var $secondOption = document.createElement('h3');
-  $secondOption.setAttribute('class', 'reem-font pd-tb');
-  $secondOption.textContent = chars[1].name;
-  $secondDiv.appendChild($secondOption);
-
-  var $thirdOptionRow = document.createElement('div');
-  $thirdOptionRow.setAttribute('class', 'row');
-  $gameContentDiv.appendChild($thirdOptionRow);
-
-  var $thirdCol = document.createElement('div');
-  $thirdCol.setAttribute('class', 'column-100');
-  $thirdOptionRow.appendChild($thirdCol);
-
-  var $thirdDiv = document.createElement('div');
-  $thirdDiv.setAttribute('class', 'option-text center-text');
-  $thirdCol.appendChild($thirdDiv);
-
-  var $thirdOption = document.createElement('h3');
-  $thirdOption.setAttribute('class', 'reem-font pd-tb');
-  $thirdOption.textContent = chars[2].name;
-  $thirdDiv.appendChild($thirdOption);
-
-  var $fourthOptionRow = document.createElement('div');
-  $fourthOptionRow.setAttribute('class', 'row');
-  $gameContentDiv.appendChild($fourthOptionRow);
-
-  var $fourthCol = document.createElement('div');
-  $fourthCol.setAttribute('class', 'column-100');
-  $fourthOptionRow.appendChild($fourthCol);
-
-  var $fourthDiv = document.createElement('div');
-  $fourthDiv.setAttribute('class', 'option-text center-text');
-  $fourthCol.appendChild($fourthDiv);
-
-  var $fourthOption = document.createElement('h3');
-  $fourthOption.setAttribute('class', 'reem-font pd-tb');
-  $fourthOption.textContent = chars[3].name;
-  $fourthDiv.appendChild($fourthOption);
-
-  return $gameContentDiv;
-}
-
 var $gameContainer = document.querySelector('.parent-game-row');
 var $dashboardButton = document.querySelector('.dash-button');
 var $playAgain = document.querySelector('.play-again-button');
@@ -293,4 +195,105 @@ function generateRandomNewGame(event) {
 
   submitRandom(0, 19);
   $gameContainer.textContent = '';
+}
+
+function renderRandomGame(chars, index) {
+  var $gameContentDiv = document.createElement('div');
+  $gameContentDiv.setAttribute('class', 'parent-game-row');
+
+  var $imgRow = document.createElement('div');
+  $imgRow.setAttribute('class', 'row');
+  $gameContentDiv.appendChild($imgRow);
+
+  var $imgCol = document.createElement('div');
+  $imgCol.setAttribute('class', 'column-100 pt-3rem margin-auto-game');
+  $imgRow.appendChild($imgCol);
+
+  var $imgCard = document.createElement('div');
+  $imgCard.setAttribute('class', 'game-card border-radius');
+  $imgCol.appendChild($imgCard);
+
+  var $img = document.createElement('img');
+  $img.setAttribute('src', chars[index].image);
+  $img.setAttribute('class', 'border-radius lg-game-img');
+  $imgCard.appendChild($img);
+
+  var $gameQuestion = document.createElement('h2');
+  $gameQuestion.setAttribute('class', 'reem-font center-text game-card-text');
+  $gameQuestion.textContent = 'What is the name of this character?!';
+  $imgCard.appendChild($gameQuestion);
+
+  // var $hiddenColumn = document.createElement('div');
+  // $hiddenColumn.setAttribute('class', 'hidden-column-half');
+  // $imgRow.appendChild($hiddenColumn);
+
+  var $firstOptionRow = document.createElement('div');
+  $firstOptionRow.setAttribute('class', 'row');
+  $gameContentDiv.appendChild($firstOptionRow);
+
+  var $firstCol = document.createElement('div');
+  $firstCol.setAttribute('class', 'column-100 margin-auto-game');
+  $firstOptionRow.appendChild($firstCol);
+
+  var $firstDiv = document.createElement('div');
+  $firstDiv.setAttribute('class', 'option-text center-text');
+  $firstCol.appendChild($firstDiv);
+
+  var $firstOption = document.createElement('h3');
+  $firstOption.setAttribute('class', 'reem-font pd-tb');
+  $firstOption.textContent = chars[0].name;
+  $firstDiv.appendChild($firstOption);
+
+  var $secondOptionRow = document.createElement('div');
+  $secondOptionRow.setAttribute('class', 'row');
+  $gameContentDiv.appendChild($secondOptionRow);
+
+  var $secondCol = document.createElement('div');
+  $secondCol.setAttribute('class', 'column-100 margin-auto-game');
+  $secondOptionRow.appendChild($secondCol);
+
+  var $secondDiv = document.createElement('div');
+  $secondDiv.setAttribute('class', 'option-text center-text');
+  $secondCol.appendChild($secondDiv);
+
+  var $secondOption = document.createElement('h3');
+  $secondOption.setAttribute('class', 'reem-font pd-tb');
+  $secondOption.textContent = chars[1].name;
+  $secondDiv.appendChild($secondOption);
+
+  var $thirdOptionRow = document.createElement('div');
+  $thirdOptionRow.setAttribute('class', 'row');
+  $gameContentDiv.appendChild($thirdOptionRow);
+
+  var $thirdCol = document.createElement('div');
+  $thirdCol.setAttribute('class', 'column-100 margin-auto-game');
+  $thirdOptionRow.appendChild($thirdCol);
+
+  var $thirdDiv = document.createElement('div');
+  $thirdDiv.setAttribute('class', 'option-text center-text');
+  $thirdCol.appendChild($thirdDiv);
+
+  var $thirdOption = document.createElement('h3');
+  $thirdOption.setAttribute('class', 'reem-font pd-tb');
+  $thirdOption.textContent = chars[2].name;
+  $thirdDiv.appendChild($thirdOption);
+
+  var $fourthOptionRow = document.createElement('div');
+  $fourthOptionRow.setAttribute('class', 'row');
+  $gameContentDiv.appendChild($fourthOptionRow);
+
+  var $fourthCol = document.createElement('div');
+  $fourthCol.setAttribute('class', 'column-100 margin-auto-game');
+  $fourthOptionRow.appendChild($fourthCol);
+
+  var $fourthDiv = document.createElement('div');
+  $fourthDiv.setAttribute('class', 'option-text center-text');
+  $fourthCol.appendChild($fourthDiv);
+
+  var $fourthOption = document.createElement('h3');
+  $fourthOption.setAttribute('class', 'reem-font pd-tb');
+  $fourthOption.textContent = chars[3].name;
+  $fourthDiv.appendChild($fourthOption);
+
+  return $gameContentDiv;
 }

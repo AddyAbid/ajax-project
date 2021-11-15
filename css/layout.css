@@ -22,10 +22,6 @@
   width: 20%;
 }
 
-.column-100 {
-  width: 100%;
-}
-
 .col-full {
   width: 50%;
 }
@@ -121,6 +117,18 @@
     max-height: 20rem;
     object-fit: fill;
   }
+
+  .hidden-column-half {
+    width: 50%;
+  }
+
+  .column-100 {
+    width: 50%;
+  }
+
+  .margin-auto-game {
+    margin: 0 auto;
+  }
 }
 
 @media only screen and (max-width: 687px) {
@@ -178,5 +186,9 @@
     width: 80%;
     background-color: rgba(255, 255, 255, 0.78);
     margin: 0 auto;
+  }
+
+  .column-100 {
+    width: 100%;
   }
 }

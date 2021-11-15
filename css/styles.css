@@ -259,6 +259,10 @@
   flex-wrap: wrap;
 }
 
+.pt-2rem {
+  padding-top: 2rem;
+}
+
 .wrap {
   flex-wrap: wrap;
 }
