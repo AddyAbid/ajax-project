@@ -8,6 +8,13 @@
   color: white;
 }
 
+.non-current {
+  font-family: 'Reem Kufi', sans-serif;
+  color: rgb(62, 62, 62);
+  background-color: transparent;
+  border: none;
+}
+
 @font-face {
   font-family: 'get-schwifty';
   src: url("../get_schwifty.ttf");
@@ -15,6 +22,7 @@
 
 .current-page-button {
   background-color: rgb(62, 62, 62);
+  color: white;
   padding: 8px 40px;
   border: none;
   border-radius: 15px;
@@ -42,6 +50,19 @@
   background-repeat: no-repeat;
   background-size: cover;
   background-attachment: fixed;
+}
+
+.modal-style-button {
+  font-size: 1rem;
+  background-color: #00a5be;
+  padding: 5px 15px;
+  border: none;
+  border-radius: 8px;
+  color: white;
+}
+
+.modal-style-button:hover {
+  cursor: pointer;
 }
 
 .row {
@@ -103,6 +124,34 @@
   justify-content: center;
 }
 
+.overlay {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+.modal-box {
+  background-color: white;
+  position: fixed;
+  width: 400px;
+  height: 150px;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 5px;
+}
+
+.score {
+  text-align: center;
+}
+
+.number {
+  color: #00a5be;
+}
+
 .pl-1rem {
   padding-left: 1rem;
 }
@@ -114,8 +163,21 @@
   font-size: 1.2rem;
 }
 
+.border-radius {
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+
 .search-button {
   padding: 3px 10px;
+  border: none;
+  background-color: rgb(62, 62, 62);
+  border-radius: 8px;
+  font-size: 1rem;
+}
+
+.next-button {
+  padding: 3px 20px;
   border: none;
   background-color: rgb(62, 62, 62);
   border-radius: 8px;
@@ -127,7 +189,11 @@
   padding: 15px 0;
   border: none;
   background-color: rgb(62, 62, 62);
-  border-radius: 8px;
+  border-radius: 10px;
+}
+
+.next-button:hover {
+  cursor: pointer;
 }
 
 .select:hover {
@@ -157,6 +223,29 @@
   margin-right: 0;
 }
 
+.game-card-text {
+  margin-top: 0;
+}
+
+.pd-tb {
+  padding: 5px 0;
+}
+
+.option-text {
+  background-color: rgba(255, 255, 255, 0.842);
+  width: 80%;
+  margin: 0 auto;
+  border-radius: 8px;
+}
+
+.option-text:hover {
+  cursor: pointer;
+}
+
+.margin-auto {
+  margin: 0 auto;
+}
+
 .center-text {
   text-align: center;
 }
@@ -176,6 +265,10 @@
 
 .flex-wrap {
   flex-wrap: wrap;
+}
+
+.pt-2rem {
+  padding-top: 2rem;
 }
 
 .wrap {
