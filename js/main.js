@@ -7,6 +7,7 @@ function swapView(viewName) {
   if (!event.target.matches('.select')) {
     return;
   }
+  $modal.classList.add('hidden');
   for (var i = 0; i < $view.length; i++) {
     var $dataView = event.target.getAttribute('data-view');
     var $newView = $view[i].getAttribute('data-view');
@@ -15,13 +16,16 @@ function swapView(viewName) {
     } else {
       $view[i].className = 'container view hidden';
     }
+
   }
   if (event.target.matches('.home')) {
     var position = document.querySelector('.mb-1rem');
     position.textContent = '';
   }
   data.view = viewName;
+
 }
+
 document.addEventListener('DOMContentLoaded', renderSearchResults);
 
 function viewHandler(event) {
@@ -63,7 +67,9 @@ function getCharacterData(name) {
   );
   xhr.send();
 }
+
 var timerId = null;
+
 function getRandomChar(randomNumArray) {
   var xhr = new XMLHttpRequest();
   xhr.open('GET', 'https://rickandmortyapi.com/api/character?page=' + generateSingleRandomNumber(0, 41));
@@ -77,42 +83,46 @@ function getRandomChar(randomNumArray) {
     }
 
     var randomIndex = Math.floor(Math.random() * eachChar.length);
-
-    var gameOptions = document.querySelector('.parent-game-row');
+    function answerClick(event) {
+      clickAnswer(eachChar, randomIndex);
+      gameOptions.removeEventListener('click', answerClick);
+    }
     gameOptions.appendChild(renderRandomGame(eachChar, randomIndex));
-    gameOptions.addEventListener('click', clickAnswer);
+    gameOptions.addEventListener('click', answerClick);
     gameOptions.addEventListener('click', renderRandomGame);
     gameOptions.addEventListener('click', getRandomChar);
 
-    function clickAnswer(event) {
-      timerId = setTimeout(generateRandom, 1000);
-      if (event.target.tagName !== 'H3') {
-        return;
-      }
-      if (event.target.textContent === eachChar[randomIndex].name) {
-        rightAnswer++;
-
-        event.target.style.backgroundColor = 'green';
-        event.target.style.borderRadius = '8px';
-        event.target.style.color = 'white';
-      } else {
-
-        event.target.style.backgroundColor = 'red';
-        event.target.style.borderRadius = '8px';
-        event.target.style.color = 'white';
-
-      }
-      gameOptions.removeEventListener('click', clickAnswer);
-      questionCounter++;
-      if (questionCounter === 10) {
-        questionCounter = 0;
-        $modal.classList.remove('hidden');
-        $score.textContent = String(rightAnswer) + '/ 10';
-        clearInterval(timerId);
-      }
-    }
   });
   xhr.send();
+}
+var gameOptions = document.querySelector('.parent-game-row');
+
+function clickAnswer(eachChar, randomIndex) {
+  timerId = setTimeout(generateRandom, 1000);
+  if (event.target.tagName !== 'H3') {
+    return;
+  }
+  if (event.target.textContent === eachChar[randomIndex].name) {
+    rightAnswer++;
+
+    event.target.style.backgroundColor = 'green';
+    event.target.style.borderRadius = '8px';
+    event.target.style.color = 'white';
+  } else {
+
+    event.target.style.backgroundColor = 'red';
+    event.target.style.borderRadius = '8px';
+    event.target.style.color = 'white';
+
+  }
+
+  questionCounter++;
+  if (questionCounter === 10) {
+    questionCounter = 0;
+    $modal.classList.remove('hidden');
+    $score.textContent = String(rightAnswer) + '/ 10';
+    clearInterval(timerId);
+  }
 }
 
 var $gameButtonMobile = document.querySelector('.game-button-mobile');
@@ -165,7 +175,7 @@ var $dashboardButton = document.querySelector('.dash-button');
 var $playAgain = document.querySelector('.play-again-button');
 var $modal = document.querySelector('.modal');
 
-$dashboardButton.addEventListener('click', modalOptions);
+$dashboardButton.addEventListener('click', swapView);
 $playAgain.addEventListener('click', generateRandomNewGame);
 
 var rightAnswer = 0;
@@ -173,22 +183,6 @@ var questionCounter = 0;
 
 var $score = document.querySelector('.number');
 
-function modalOptions(event) {
-  if (!event.target.matches('.select')) {
-    return;
-  }
-  $modal.classList.add('hidden');
-  for (var i = 0; i < $view.length; i++) {
-    var $dataView = event.target.getAttribute('data-view');
-    var $newView = $view[i].getAttribute('data-view');
-    if ($dataView === $newView) {
-      $view[i].className = 'container view';
-    } else {
-      $view[i].className = 'container view hidden';
-    }
-  }
-
-}
 function generateRandomNewGame(event) {
   rightAnswer = 0;
   $modal.classList.add('hidden');
@@ -222,10 +216,6 @@ function renderRandomGame(chars, index) {
   $gameQuestion.setAttribute('class', 'reem-font center-text game-card-text');
   $gameQuestion.textContent = 'What is the name of this character?!';
   $imgCard.appendChild($gameQuestion);
-
-  // var $hiddenColumn = document.createElement('div');
-  // $hiddenColumn.setAttribute('class', 'hidden-column-half');
-  // $imgRow.appendChild($hiddenColumn);
 
   var $firstOptionRow = document.createElement('div');
   $firstOptionRow.setAttribute('class', 'row');

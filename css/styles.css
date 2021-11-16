@@ -8,6 +8,13 @@
   color: white;
 }
 
+.non-current {
+  font-family: 'Reem Kufi', sans-serif;
+  color: rgb(62, 62, 62);
+  background-color: transparent;
+  border: none;
+}
+
 @font-face {
   font-family: 'get-schwifty';
   src: url("../get_schwifty.ttf");
@@ -15,6 +22,7 @@
 
 .current-page-button {
   background-color: rgb(62, 62, 62);
+  color: white;
   padding: 8px 40px;
   border: none;
   border-radius: 15px;
