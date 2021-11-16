@@ -13,7 +13,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Reem+Kufi&family=Roboto:wght@300&display=swap" rel="stylesheet">
 </head>
 <body class="select-container bg-img">
-  <div class="modal ">
+  <div class="modal hidden">
     <div class="row">
       <div class="column-100">
         <div class="overlay">
@@ -24,7 +24,7 @@
                 <button class=" modal-style-button reem-font-white dash-button select button" data-view="dashboard">Return to Home</button>
               </div>
               <div class="col-third center-text" data-view="character-list">
-                <button class=" modal-style-button reem-font-white dash-button select button" data-view="dashboard">View Characters</button>
+                <button class=" modal-style-button reem-font-white dash-button select button" data-view="character-list">View Characters</button>
               </div>
               <div class="col-third center-text" data-view="game-view">
                 <button class=" modal-style-button-longer reem-font-white play-again-button select button" data-view="game-view">Play Again</button>
@@ -89,7 +89,11 @@
     <div class="container view hidden" data-view="game-view">
       <div data-view="game-view" class="parent-game-row">
     </div>
+    </div>
+    <div class="container view hidden" data-view="character-list">
+      <div class="row overlay">
 
+      </div>
     </div>
   </main>
   <script src="js/data.js"></script>
