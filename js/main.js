@@ -83,6 +83,7 @@ function getRandomChar(randomNumArray) {
     }
 
     var randomIndex = Math.floor(Math.random() * eachChar.length);
+
     function answerClick(event) {
       clickAnswer(eachChar, randomIndex);
       gameOptions.removeEventListener('click', answerClick);
@@ -95,10 +96,14 @@ function getRandomChar(randomNumArray) {
   });
   xhr.send();
 }
+
 var gameOptions = document.querySelector('.parent-game-row');
 
 function clickAnswer(eachChar, randomIndex) {
   timerId = setTimeout(generateRandom, 1000);
+
+  data.characterData.push(eachChar[randomIndex]);
+
   if (event.target.tagName !== 'H3') {
     return;
   }
@@ -108,6 +113,7 @@ function clickAnswer(eachChar, randomIndex) {
     event.target.style.backgroundColor = 'green';
     event.target.style.borderRadius = '8px';
     event.target.style.color = 'white';
+
   } else {
 
     event.target.style.backgroundColor = 'red';
@@ -122,7 +128,9 @@ function clickAnswer(eachChar, randomIndex) {
     $modal.classList.remove('hidden');
     $score.textContent = String(rightAnswer) + '/ 10';
     clearInterval(timerId);
+
   }
+
 }
 
 var $gameButtonMobile = document.querySelector('.game-button-mobile');

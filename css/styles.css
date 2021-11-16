@@ -52,8 +52,17 @@
   background-attachment: fixed;
 }
 
+.modal-style-button-longer {
+  font-size: 0.8rem;
+  background-color: #00a5be;
+  padding: 5px 25px;
+  border: none;
+  border-radius: 8px;
+  color: white;
+}
+
 .modal-style-button {
-  font-size: 1rem;
+  font-size: 0.8rem;
   background-color: #00a5be;
   padding: 5px 15px;
   border: none;
