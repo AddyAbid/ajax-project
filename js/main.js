@@ -322,7 +322,7 @@ function showCharDetails(event) {
 }
 
 var hideDetails = document.querySelector('.hidden-card');
-document.addEventListener('click', clearCharList);
+document.addEventListener('click', clearData);
 document.addEventListener('click', hideCharDetails);
 function hideCharDetails(event) {
   if (event.target.tagName === 'I') {
@@ -332,10 +332,15 @@ function hideCharDetails(event) {
     }
   }
 }
-
-function clearCharList(event) {
-  if (event.target.classList.contains('dash-button') || event.target.classList.contains('play-again-button')) {
+function clearData(event) {
+  var $parentListView = document.querySelector('#list');
+  if (data.view !== 'character-list' && event.target.tagName === 'A') {
     data.characterData = [];
+    rightAnswer = 0;
+    while ($parentListView.childNodes.length > 2) {
+      $parentListView.removeChild($parentListView.lastChild);
+
+    }
   }
 }
 
