@@ -28,8 +28,13 @@
   border-radius: 15px;
 }
 
+.pl {
+  padding-left: 15px;
+}
+
 .nav {
   padding-top: 2rem;
+  margin-bottom: 4rem;
   color: rgb(62, 62, 62);
 }
 
@@ -50,6 +55,17 @@
   background-repeat: no-repeat;
   background-size: cover;
   background-attachment: fixed;
+}
+
+.char-card {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+.result-img-card {
+  margin-top: 0;
+  width: 100%;
+  border-top-left-radius: 5px;
+  height: 100%;
 }
 
 .modal-style-button-longer {
@@ -134,6 +150,15 @@
 }
 
 .overlay {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+.card-modal {
   position: absolute;
   top: 0;
   bottom: 0;
@@ -249,6 +274,13 @@
 
 .option-text:hover {
   cursor: pointer;
+}
+
+.char-info-text {
+  font-family: 'Reem Kufi', sans-serif;
+  color: rgb(116, 116, 116);
+  margin-left: 2rem;
+  margin-top: 2rem;
 }
 
 .margin-auto {
