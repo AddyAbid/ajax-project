@@ -6,6 +6,17 @@
   display: inline;
 }
 
+.width-80 {
+  width: 80%;
+  position: fixed;
+  background-color: rgba(255, 255, 255, 0.842);
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
 .column-full {
   width: 100%;
 }
@@ -47,10 +58,6 @@
     width: 50%;
   }
 
-  .col-75 {
-    width: 100%;
-  }
-
   .col-fourth {
     width: 20%;
   }
@@ -63,18 +70,10 @@
     width: 100%;
   }
 
-  .col-third {
-    width: 100%;
-  }
-
   .results-img {
     height: 65%;
     border-top-right-radius: 5px;
     border-top-left-radius: 5px;
-  }
-
-  .card {
-    height: 150px;
   }
 
   .card-no-margin {
@@ -110,7 +109,6 @@
     width: 80%;
     background-color: rgba(255, 255, 255, 0.78);
     margin: 0 auto;
-    height: 23rem;
   }
 
   .lg-game-img {
@@ -129,6 +127,10 @@
   .margin-auto-game {
     margin: 0 auto;
   }
+
+  .flex-on-lg {
+    display: flex;
+  }
 }
 
 @media only screen and (max-width: 687px) {
@@ -136,10 +138,6 @@
     height: 100%;
     border-top-left-radius: 5px;
     border-bottom-left-radius: 5px;
-  }
-
-  .card {
-    height: 125px;
   }
 
   .card-no-margin {

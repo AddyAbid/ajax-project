@@ -10,6 +10,7 @@
   <link rel="stylesheet" href="css/styles.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" rel="stylesheet" />
   <link href="https://fonts.googleapis.com/css2?family=Reem+Kufi&family=Roboto:wght@300&display=swap" rel="stylesheet">
 </head>
 <body class="select-container bg-img">
@@ -20,11 +21,14 @@
           <div class="modal-box">
             <h2 class="reem-font score">You got <span class="score number"></span> question right!</h2>
             <div class="row mt-3rem">
-              <div class="col-half center-text" data-view="dashboard">
+              <div class="col-third center-text" data-view="dashboard">
                 <button class=" modal-style-button reem-font-white dash-button select button" data-view="dashboard">Return to Home</button>
               </div>
-              <div class="col-half center-text" data-view="game-view">
-                <button class=" modal-style-button reem-font-white play-again-button select button" data-view="game-view">Play Again</button>
+              <div class="col-third center-text" data-view="character-list">
+                <button class=" modal-style-button reem-font-white  select button view-button" data-view="character-list">View Characters</button>
+              </div>
+              <div class="col-third center-text" data-view="game-view">
+                <button class=" modal-style-button-longer reem-font-white play-again-button select button" data-view="game-view">Play Again</button>
               </div>
             </div>
           </div>
@@ -34,11 +38,11 @@
   </div>
   <header>
       <div class="nav row">
-        <div class="column-20 center-text order-1 select button" data-view="dashboard">
-        <button class="non-current select button home" data-view="dashboard"><a class="select button home" data-view="dashboard">Home</a></button>
+        <div class="column-20 center-text order-1 " data-view="dashboard">
+        <button class="non-current select button home dash-button" data-view="dashboard"><a class="select button home" data-view="dashboard">Home</a></button>
       </div>
-        <div class="column-20 center-text hide select button tab" data-view="game-view">
-          <button class="tab non-current select button home game-button-desktop" data-view="game-view"> <a class="game-button-desktop  select button" data-view="game-view">Play Game</a></button>
+        <div class="column-20 center-text hide tab" data-view="game-view">
+          <button class="tab non-current select button home game-button-desktop play-again-button" data-view="game-view"> <a class="game-button-desktop  select button" data-view="game-view">Play Game</a></button>
       </div>
         <div class="column-20 center-text">
           <a class="get-schwifty-font">Guess That Rick</a>
@@ -86,8 +90,15 @@
     <div class="container view hidden" data-view="game-view">
       <div data-view="game-view" class="parent-game-row">
     </div>
-
     </div>
+    <div class="container view  hidden " data-view="character-list">
+      <div class="char-list flex-wrap row" id="list">
+        <div class="hidden-card">
+
+        </div>
+
+      </div>
+  </div>
   </main>
   <script src="js/data.js"></script>
   <script src="js/main.js"></script>

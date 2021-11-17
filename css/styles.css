@@ -28,8 +28,13 @@
   border-radius: 15px;
 }
 
+.pl {
+  padding-left: 15px;
+}
+
 .nav {
   padding-top: 2rem;
+  margin-bottom: 4rem;
   color: rgb(62, 62, 62);
 }
 
@@ -52,8 +57,28 @@
   background-attachment: fixed;
 }
 
+.char-card {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+.result-img-card {
+  margin-top: 0;
+  width: 100%;
+  border-top-left-radius: 5px;
+  height: 100%;
+}
+
+.modal-style-button-longer {
+  font-size: 0.8rem;
+  background-color: #00a5be;
+  padding: 5px 25px;
+  border: none;
+  border-radius: 8px;
+  color: white;
+}
+
 .modal-style-button {
-  font-size: 1rem;
+  font-size: 0.8rem;
   background-color: #00a5be;
   padding: 5px 15px;
   border: none;
@@ -102,6 +127,10 @@
   cursor: pointer;
 }
 
+.hover:hover {
+  cursor: pointer;
+}
+
 .mt-3rem {
   margin-top: 3rem;
 }
@@ -124,6 +153,10 @@
   justify-content: center;
 }
 
+.bold-font {
+  font-weight: 900;
+}
+
 .overlay {
   position: absolute;
   top: 0;
@@ -131,6 +164,19 @@
   right: 0;
   left: 0;
   background-color: rgba(0, 0, 0, 0.8);
+}
+
+.span-text {
+  font-size: 1.1rem;
+}
+
+.card-modal {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.705);
 }
 
 .modal-box {
@@ -161,6 +207,16 @@
   border-radius: 5px;
   width: 70%;
   font-size: 1.2rem;
+}
+
+.absolute-icon {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+}
+
+.fa-lg:hover {
+  cursor: pointer;
 }
 
 .border-radius {
@@ -240,6 +296,13 @@
 
 .option-text:hover {
   cursor: pointer;
+}
+
+.char-info-text {
+  font-family: 'Reem Kufi', sans-serif;
+  color: rgb(116, 116, 116);
+  margin-left: 2rem;
+  margin-top: 2rem;
 }
 
 .margin-auto {

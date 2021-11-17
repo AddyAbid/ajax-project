@@ -1,7 +1,32 @@
 
 var $view = document.querySelectorAll('.view');
+var $viewCharButton = document.querySelector('.view-button');
+var $parentListView = document.querySelector('.char-list');
+var $input = document.querySelector('#searchData');
+var gameOptions = document.querySelector('.parent-game-row');
+var $gameButtonMobile = document.querySelector('.game-button-mobile');
+var $gameButtonDesktop = document.querySelector('.game-button-desktop');
+var $gameContainer = document.querySelector('.parent-game-row');
+var $dashboardButton = document.querySelector('.dash-button');
+var $playAgain = document.querySelector('.play-again-button');
+var $modal = document.querySelector('.modal');
+var hideDetails = document.querySelector('.hidden-card');
+var $score = document.querySelector('.number');
+var timerId = null;
+var rightAnswer = 0;
+var questionCounter = 0;
 
+document.addEventListener('click', showCharDetails);
+document.addEventListener('click', clearData);
+document.addEventListener('click', hideCharDetails);
+$viewCharButton.addEventListener('click', showCharList);
+$dashboardButton.addEventListener('click', swapView);
+$playAgain.addEventListener('click', generateRandomNewGame);
+$gameButtonMobile.addEventListener('click', generateRandom);
+$gameButtonDesktop.addEventListener('click', generateRandom);
+$input.addEventListener('submit', submitData);
 document.addEventListener('click', viewHandler);
+document.addEventListener('DOMContentLoaded', renderSearchResults);
 
 function swapView(viewName) {
   if (!event.target.matches('.select')) {
@@ -19,6 +44,7 @@ function swapView(viewName) {
 
   }
   if (event.target.matches('.home')) {
+
     var position = document.querySelector('.mb-1rem');
     position.textContent = '';
   }
@@ -26,18 +52,12 @@ function swapView(viewName) {
 
 }
 
-document.addEventListener('DOMContentLoaded', renderSearchResults);
-
 function viewHandler(event) {
   if (!event.target.matches('.button')) {
     return;
   }
   swapView(event.target.getAttribute('data-view'));
 }
-
-var $input = document.querySelector('#searchData');
-
-$input.addEventListener('submit', submitData);
 
 function submitData(event) {
   event.preventDefault();
@@ -68,8 +88,6 @@ function getCharacterData(name) {
   xhr.send();
 }
 
-var timerId = null;
-
 function getRandomChar(randomNumArray) {
   var xhr = new XMLHttpRequest();
   xhr.open('GET', 'https://rickandmortyapi.com/api/character?page=' + generateSingleRandomNumber(0, 41));
@@ -83,6 +101,7 @@ function getRandomChar(randomNumArray) {
     }
 
     var randomIndex = Math.floor(Math.random() * eachChar.length);
+
     function answerClick(event) {
       clickAnswer(eachChar, randomIndex);
       gameOptions.removeEventListener('click', answerClick);
@@ -95,10 +114,12 @@ function getRandomChar(randomNumArray) {
   });
   xhr.send();
 }
-var gameOptions = document.querySelector('.parent-game-row');
 
 function clickAnswer(eachChar, randomIndex) {
   timerId = setTimeout(generateRandom, 1000);
+
+  data.characterData.push(eachChar[randomIndex]);
+
   if (event.target.tagName !== 'H3') {
     return;
   }
@@ -108,6 +129,7 @@ function clickAnswer(eachChar, randomIndex) {
     event.target.style.backgroundColor = 'green';
     event.target.style.borderRadius = '8px';
     event.target.style.color = 'white';
+
   } else {
 
     event.target.style.backgroundColor = 'red';
@@ -122,14 +144,10 @@ function clickAnswer(eachChar, randomIndex) {
     $modal.classList.remove('hidden');
     $score.textContent = String(rightAnswer) + '/ 10';
     clearInterval(timerId);
+
   }
+
 }
-
-var $gameButtonMobile = document.querySelector('.game-button-mobile');
-var $gameButtonDesktop = document.querySelector('.game-button-desktop');
-
-$gameButtonMobile.addEventListener('click', generateRandom);
-$gameButtonDesktop.addEventListener('click', generateRandom);
 
 function generateRandom(event) {
   submitRandom(0, 19);
@@ -159,7 +177,7 @@ function renderSearchResults(characters) {
 
   var $img = document.createElement('img');
   $img.setAttribute('src', characters.image);
-  $img.setAttribute('class', 'results-img card-no-margin col-25 max-height');
+  $img.setAttribute('class', 'results-img card-no-margin col-25 max-height hover');
   $wrapRow.appendChild($img);
 
   var $name = document.createElement('h2');
@@ -169,19 +187,6 @@ function renderSearchResults(characters) {
 
   return $colFourth;
 }
-
-var $gameContainer = document.querySelector('.parent-game-row');
-var $dashboardButton = document.querySelector('.dash-button');
-var $playAgain = document.querySelector('.play-again-button');
-var $modal = document.querySelector('.modal');
-
-$dashboardButton.addEventListener('click', swapView);
-$playAgain.addEventListener('click', generateRandomNewGame);
-
-var rightAnswer = 0;
-var questionCounter = 0;
-
-var $score = document.querySelector('.number');
 
 function generateRandomNewGame(event) {
   rightAnswer = 0;
@@ -286,4 +291,129 @@ function renderRandomGame(chars, index) {
   $fourthDiv.appendChild($fourthOption);
 
   return $gameContentDiv;
+}
+
+function showCharList(event) {
+  appendChars();
+}
+
+function appendChars() {
+  for (var i = 0; i < data.characterData.length; i++) {
+    $parentListView.appendChild(renderSearchResults(data.characterData[i]));
+  }
+}
+
+function showCharDetails(event) {
+  if (event.target.classList.contains('results-img')) {
+    for (var i = 0; i < data.characterData.length; i++) {
+      if (data.characterData[i].image === event.target.src) {
+        hideDetails.classList.remove('hidden');
+        hideDetails.appendChild(renderCharCard(data.characterData[i]));
+      }
+    }
+  }
+}
+
+function hideCharDetails(event) {
+  if (event.target.tagName === 'I') {
+    hideDetails.classList.add('hidden');
+    while (hideDetails.firstChild) {
+      hideDetails.removeChild(hideDetails.firstChild);
+    }
+  }
+}
+function clearData(event) {
+  var $parentListView = document.querySelector('#list');
+  if (data.view !== 'character-list' && event.target.tagName === 'A') {
+    data.characterData = [];
+    rightAnswer = 0;
+    while ($parentListView.childNodes.length > 2) {
+      $parentListView.removeChild($parentListView.lastChild);
+
+    }
+  }
+}
+
+function renderCharCard(character) {
+  var $modalDiv = document.createElement('div');
+  $modalDiv.setAttribute('class', 'card-modal');
+
+  var $row = document.createElement('div');
+  $row.setAttribute('class', 'flex-on-lg margin-top  width-80 border');
+  $modalDiv.appendChild($row);
+
+  var $firstColFull = document.createElement('div');
+  $firstColFull.setAttribute('class', 'column-full');
+  $row.appendChild($firstColFull);
+
+  var $img = document.createElement('img');
+  $img.setAttribute('src', character.image);
+  $img.setAttribute('class', 'result-img-card');
+  $firstColFull.appendChild($img);
+
+  var icon = document.createElement('i');
+  icon.setAttribute('class', 'fas fa-times fa-lg absolute-icon');
+  $firstColFull.appendChild(icon);
+
+  var $secColFull = document.createElement('div');
+  $secColFull.setAttribute('class', 'column-full');
+  $row.appendChild($secColFull);
+
+  var $charName = document.createElement('h1');
+  $charName.setAttribute('class', 'reem-font pl bold-font');
+  $charName.textContent = character.name;
+  $secColFull.appendChild($charName);
+
+  var $charStatus = document.createElement('h2');
+  $charStatus.setAttribute('class', 'reem-font pl');
+  $charStatus.textContent = 'Status: ';
+  $secColFull.appendChild($charStatus);
+
+  var status = document.createElement('span');
+  status.textContent = character.status;
+  status.setAttribute('class', 'span-text');
+  $charStatus.appendChild(status);
+
+  var $charSpecies = document.createElement('h2');
+  $charSpecies.setAttribute('class', 'reem-font pl');
+  $charSpecies.textContent = 'Species: ';
+  $secColFull.appendChild($charSpecies);
+
+  var species = document.createElement('span');
+  species.textContent = character.species;
+  species.setAttribute('class', 'span-text');
+  $charSpecies.appendChild(species);
+
+  var $charGender = document.createElement('h2');
+  $charGender.setAttribute('class', 'reem-font pl');
+  $charGender.textContent = 'Gender: ';
+  $secColFull.appendChild($charGender);
+
+  var gender = document.createElement('span');
+  gender.textContent = character.gender;
+  gender.setAttribute('class', 'span-text');
+  $charGender.appendChild(gender);
+
+  var $charOrigin = document.createElement('h2');
+  $charOrigin.setAttribute('class', 'reem-font pl');
+  $charOrigin.textContent = 'Origin: ';
+  $secColFull.appendChild($charOrigin);
+
+  var origin = document.createElement('span');
+  origin.textContent = character.origin.name;
+  origin.setAttribute('class', 'span-text');
+  $charOrigin.appendChild(origin);
+
+  var $charLocation = document.createElement('h2');
+  $charLocation.setAttribute('class', 'reem-font pl');
+  $charLocation.textContent = 'Location: ';
+  $secColFull.appendChild($charLocation);
+
+  var location = document.createElement('span');
+  location.textContent = character.location.name;
+  location.setAttribute('class', 'span-text');
+  $charLocation.appendChild(location);
+
+  return $modalDiv;
+
 }
