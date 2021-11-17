@@ -1,7 +1,32 @@
 
 var $view = document.querySelectorAll('.view');
 var $viewCharButton = document.querySelector('.view-button');
+var $parentListView = document.querySelector('.char-list');
+var $input = document.querySelector('#searchData');
+var gameOptions = document.querySelector('.parent-game-row');
+var $gameButtonMobile = document.querySelector('.game-button-mobile');
+var $gameButtonDesktop = document.querySelector('.game-button-desktop');
+var $gameContainer = document.querySelector('.parent-game-row');
+var $dashboardButton = document.querySelector('.dash-button');
+var $playAgain = document.querySelector('.play-again-button');
+var $modal = document.querySelector('.modal');
+var hideDetails = document.querySelector('.hidden-card');
+var $score = document.querySelector('.number');
+var timerId = null;
+var rightAnswer = 0;
+var questionCounter = 0;
+
+document.addEventListener('click', showCharDetails);
+document.addEventListener('click', clearData);
+document.addEventListener('click', hideCharDetails);
+$viewCharButton.addEventListener('click', showCharList);
+$dashboardButton.addEventListener('click', swapView);
+$playAgain.addEventListener('click', generateRandomNewGame);
+$gameButtonMobile.addEventListener('click', generateRandom);
+$gameButtonDesktop.addEventListener('click', generateRandom);
+$input.addEventListener('submit', submitData);
 document.addEventListener('click', viewHandler);
+document.addEventListener('DOMContentLoaded', renderSearchResults);
 
 function swapView(viewName) {
   if (!event.target.matches('.select')) {
@@ -27,18 +52,12 @@ function swapView(viewName) {
 
 }
 
-document.addEventListener('DOMContentLoaded', renderSearchResults);
-
 function viewHandler(event) {
   if (!event.target.matches('.button')) {
     return;
   }
   swapView(event.target.getAttribute('data-view'));
 }
-
-var $input = document.querySelector('#searchData');
-
-$input.addEventListener('submit', submitData);
 
 function submitData(event) {
   event.preventDefault();
@@ -69,8 +88,6 @@ function getCharacterData(name) {
   xhr.send();
 }
 
-var timerId = null;
-
 function getRandomChar(randomNumArray) {
   var xhr = new XMLHttpRequest();
   xhr.open('GET', 'https://rickandmortyapi.com/api/character?page=' + generateSingleRandomNumber(0, 41));
@@ -97,8 +114,6 @@ function getRandomChar(randomNumArray) {
   });
   xhr.send();
 }
-
-var gameOptions = document.querySelector('.parent-game-row');
 
 function clickAnswer(eachChar, randomIndex) {
   timerId = setTimeout(generateRandom, 1000);
@@ -133,12 +148,6 @@ function clickAnswer(eachChar, randomIndex) {
   }
 
 }
-
-var $gameButtonMobile = document.querySelector('.game-button-mobile');
-var $gameButtonDesktop = document.querySelector('.game-button-desktop');
-
-$gameButtonMobile.addEventListener('click', generateRandom);
-$gameButtonDesktop.addEventListener('click', generateRandom);
 
 function generateRandom(event) {
   submitRandom(0, 19);
@@ -178,19 +187,6 @@ function renderSearchResults(characters) {
 
   return $colFourth;
 }
-
-var $gameContainer = document.querySelector('.parent-game-row');
-var $dashboardButton = document.querySelector('.dash-button');
-var $playAgain = document.querySelector('.play-again-button');
-var $modal = document.querySelector('.modal');
-
-$dashboardButton.addEventListener('click', swapView);
-$playAgain.addEventListener('click', generateRandomNewGame);
-
-var rightAnswer = 0;
-var questionCounter = 0;
-
-var $score = document.querySelector('.number');
 
 function generateRandomNewGame(event) {
   rightAnswer = 0;
@@ -297,8 +293,6 @@ function renderRandomGame(chars, index) {
   return $gameContentDiv;
 }
 
-$viewCharButton.addEventListener('click', showCharList);
-var $parentListView = document.querySelector('.char-list');
 function showCharList(event) {
   appendChars();
 }
@@ -309,7 +303,6 @@ function appendChars() {
   }
 }
 
-document.addEventListener('click', showCharDetails);
 function showCharDetails(event) {
   if (event.target.classList.contains('results-img')) {
     for (var i = 0; i < data.characterData.length; i++) {
@@ -321,9 +314,6 @@ function showCharDetails(event) {
   }
 }
 
-var hideDetails = document.querySelector('.hidden-card');
-document.addEventListener('click', clearData);
-document.addEventListener('click', hideCharDetails);
 function hideCharDetails(event) {
   if (event.target.tagName === 'I') {
     hideDetails.classList.add('hidden');
