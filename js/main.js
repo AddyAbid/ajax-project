@@ -1,6 +1,6 @@
 
 var $view = document.querySelectorAll('.view');
-
+var $viewCharButton = document.querySelector('.view-button');
 document.addEventListener('click', viewHandler);
 
 function swapView(viewName) {
@@ -295,3 +295,27 @@ function renderRandomGame(chars, index) {
 
   return $gameContentDiv;
 }
+
+$viewCharButton.addEventListener('click', showCharList);
+var $parentListView = document.querySelector('.char-list');
+function showCharList(event) {
+  for (var i = 0; i < data.characterData.length; i++) {
+    $parentListView.appendChild(renderSearchResults(data.characterData[i]));
+  }
+}
+
+// < !-- < div class="card-modal" >
+//   <div class="flex-on-lg margin-top  width-80 border">
+//     <div class="column-full">
+//       <img src="https://rickandmortyapi.com/api/character/avatar/1.jpeg" class="result-img-card ">
+//     </div>
+//     <div class="column-full">
+//       <h1 class="reem-font pl">Rick Sanchez</h1>
+//       <h2 class="reem-font pl">Status: <span>Alive</span></h2>
+//       <h2 class="reem-font pl">Species: <span>Human</span></h2>
+//       <h2 class="reem-font pl">Gender: <span>Male</span></h2>
+//       <h2 class="reem-font pl">Origin: <span>Alive</span></h2>
+//       <h2 class="reem-font pl">Location: <span>C-137</span></h2>
+//     </div>
+//   </div>
+//     </div > -->
