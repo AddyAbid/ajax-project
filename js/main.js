@@ -19,6 +19,7 @@ function swapView(viewName) {
 
   }
   if (event.target.matches('.home')) {
+
     var position = document.querySelector('.mb-1rem');
     position.textContent = '';
   }
@@ -321,7 +322,7 @@ function showCharDetails(event) {
 }
 
 var hideDetails = document.querySelector('.hidden-card');
-
+document.addEventListener('click', clearCharList);
 document.addEventListener('click', hideCharDetails);
 function hideCharDetails(event) {
   if (event.target.tagName === 'I') {
@@ -329,6 +330,12 @@ function hideCharDetails(event) {
     while (hideDetails.firstChild) {
       hideDetails.removeChild(hideDetails.firstChild);
     }
+  }
+}
+
+function clearCharList(event) {
+  if (event.target.classList.contains('dash-button') || event.target.classList.contains('play-again-button')) {
+    data.characterData = [];
   }
 }
 
