@@ -341,6 +341,9 @@ function clearData(event) {
 function saveCharEvent(event) {
   if (event.target.classList.contains('save-hover')) {
     data.favorites.push(currentChar);
+    var charSavedText = event.target;
+    charSavedText.textContent = 'Saved!';
+    charSavedText.style.color = 'green';
   }
 
 }
