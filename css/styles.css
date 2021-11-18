@@ -13,6 +13,7 @@
   color: rgb(62, 62, 62);
   background-color: transparent;
   border: none;
+  font-size: 1rem;
 }
 
 .save-hover:hover {
