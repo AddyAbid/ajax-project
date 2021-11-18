@@ -287,6 +287,10 @@
   margin-top: 0;
 }
 
+.green-text {
+  color: green;
+}
+
 .pd-tb {
   padding: 5px 0;
 }

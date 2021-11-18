@@ -343,7 +343,7 @@ function saveCharEvent(event) {
     data.favorites.push(currentChar);
     var charSavedText = event.target;
     charSavedText.textContent = 'Saved!';
-    charSavedText.style.color = 'green';
+    charSavedText.classList.add('green-text');
   }
 
 }
