@@ -15,6 +15,10 @@
   border: none;
 }
 
+.save-hover:hover {
+  cursor: pointer;
+}
+
 @font-face {
   font-family: 'get-schwifty';
   src: url("../get_schwifty.ttf");
@@ -283,8 +287,16 @@
   margin-top: 0;
 }
 
+.green-text {
+  color: green;
+}
+
 .pd-tb {
   padding: 5px 0;
+}
+
+.display-table {
+  display: table;
 }
 
 .option-text {
