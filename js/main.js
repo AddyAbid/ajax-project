@@ -11,7 +11,10 @@ var $dashboardButton = document.querySelector('.dash-button');
 var $playAgain = document.querySelector('.play-again-button');
 var $modal = document.querySelector('.modal');
 var hideDetails = document.querySelector('.hidden-card');
+var hideDetailsFavorite = document.querySelector('.hidden-card-favorites');
 var $score = document.querySelector('.number');
+var $favoritesList = document.querySelector('.favorites-list');
+var $gameDiv = document.querySelector('.game-div');
 var timerId = null;
 var rightAnswer = 0;
 var questionCounter = 0;
@@ -20,6 +23,7 @@ document.addEventListener('click', saveCharEvent);
 document.addEventListener('click', showCharDetails);
 document.addEventListener('click', clearData);
 document.addEventListener('click', hideCharDetails);
+document.addEventListener('click', hideFavCharDetails);
 $viewCharButton.addEventListener('click', showCharList);
 $dashboardButton.addEventListener('click', swapView);
 $playAgain.addEventListener('click', generateRandomNewGame);
@@ -27,27 +31,18 @@ $gameButtonMobile.addEventListener('click', generateRandom);
 $gameButtonDesktop.addEventListener('click', generateRandom);
 $input.addEventListener('submit', submitData);
 document.addEventListener('click', viewHandler);
-document.addEventListener('DOMContentLoaded', renderSearchResults);
 
 function swapView(viewName) {
-  if (!event.target.matches('.select')) {
-    return;
-  }
+
   $modal.classList.add('hidden');
   for (var i = 0; i < $view.length; i++) {
-    var $dataView = event.target.getAttribute('data-view');
+
     var $newView = $view[i].getAttribute('data-view');
-    if ($dataView === $newView) {
+    if (viewName === $newView) {
       $view[i].className = 'container view';
     } else {
       $view[i].className = 'container view hidden';
     }
-
-  }
-  if (event.target.matches('.home')) {
-
-    var position = document.querySelector('.mb-1rem');
-    position.textContent = '';
   }
   data.view = viewName;
 
@@ -56,6 +51,13 @@ function swapView(viewName) {
 function viewHandler(event) {
   if (!event.target.matches('.button')) {
     return;
+  }
+  if (event.target.matches('.home')) {
+    var position = document.querySelector('.mb-1rem');
+    position.textContent = '';
+  }
+  if (event.target.matches('.clear-game')) {
+    questionCounter = 0;
   }
   swapView(event.target.getAttribute('data-view'));
 }
@@ -107,6 +109,9 @@ function getRandomChar(randomNumArray) {
       clickAnswer(eachChar, randomIndex);
       gameOptions.removeEventListener('click', answerClick);
     }
+    while ($gameDiv.firstChild) {
+      $gameDiv.removeChild($gameDiv.firstChild);
+    }
     gameOptions.appendChild(renderRandomGame(eachChar, randomIndex));
     gameOptions.addEventListener('click', answerClick);
     gameOptions.addEventListener('click', renderRandomGame);
@@ -145,9 +150,7 @@ function clickAnswer(eachChar, randomIndex) {
     $modal.classList.remove('hidden');
     $score.textContent = String(rightAnswer) + '/ 10';
     clearInterval(timerId);
-
   }
-
 }
 
 function generateRandom(event) {
@@ -318,6 +321,27 @@ function showCharDetails(event) {
   }
 
 }
+document.addEventListener('click', showFavoritesCard);
+
+function showFavoritesCard(event) {
+  if (data.view === 'favorites' && event.target.tagName === 'IMG') {
+    for (var i = 0; i < data.favorites.length; i++) {
+      if (data.favorites[i].image === event.target.src) {
+        hideDetailsFavorite.classList.remove('hidden');
+        hideDetailsFavorite.appendChild(renderFavCharCard(data.favorites[i]));
+      }
+    }
+  }
+
+}
+function hideFavCharDetails(event) {
+  if (event.target.tagName === 'I') {
+    hideDetailsFavorite.classList.add('hidden');
+    while (hideDetailsFavorite.firstChild) {
+      hideDetailsFavorite.removeChild(hideDetailsFavorite.firstChild);
+    }
+  }
+}
 
 function hideCharDetails(event) {
   if (event.target.tagName === 'I') {
@@ -341,11 +365,21 @@ function clearData(event) {
 function saveCharEvent(event) {
   if (event.target.classList.contains('save-hover')) {
     data.favorites.push(currentChar);
+    $favoritesList.appendChild(renderSearchResults(currentChar));
     var charSavedText = event.target;
     charSavedText.textContent = 'Saved!';
     charSavedText.classList.add('green-text');
   }
+}
+window.addEventListener('DOMContentLoaded', createDOM);
+document.addEventListener('click', viewHandler);
+function createDOM(event) {
+  for (var i = 0; i < data.favorites.length; i++) {
+    var eachEntry = renderSearchResults(data.favorites[i]);
+    $favoritesList.append(eachEntry);
 
+  }
+  swapView(data.view);
 }
 
 function renderCharCard(character) {
@@ -432,6 +466,90 @@ function renderCharCard(character) {
   $saveButton.setAttribute('class', 'center-text mt-3rem reem-font save-hover margin-auto display-table');
   $saveButton.textContent = 'Save to Favorites?';
   $secColFull.appendChild($saveButton);
+
+  return $modalDiv;
+
+}
+
+function renderFavCharCard(character) {
+  var $modalDiv = document.createElement('div');
+  $modalDiv.setAttribute('class', 'card-modal');
+
+  var $row = document.createElement('div');
+  $row.setAttribute('class', 'flex-on-lg margin-top  width-80 border');
+  $modalDiv.appendChild($row);
+
+  var $firstColFull = document.createElement('div');
+  $firstColFull.setAttribute('class', 'column-full');
+  $row.appendChild($firstColFull);
+
+  var $img = document.createElement('img');
+  $img.setAttribute('src', character.image);
+  $img.setAttribute('class', 'result-img-card');
+  $firstColFull.appendChild($img);
+
+  var icon = document.createElement('i');
+  icon.setAttribute('class', 'fas fa-times fa-lg absolute-icon');
+  $firstColFull.appendChild(icon);
+
+  var $secColFull = document.createElement('div');
+  $secColFull.setAttribute('class', 'column-full');
+  $row.appendChild($secColFull);
+
+  var $charName = document.createElement('h1');
+  $charName.setAttribute('class', 'reem-font pl bold-font');
+  $charName.textContent = character.name;
+  $secColFull.appendChild($charName);
+
+  var $charStatus = document.createElement('h2');
+  $charStatus.setAttribute('class', 'reem-font pl');
+  $charStatus.textContent = 'Status: ';
+  $secColFull.appendChild($charStatus);
+
+  var status = document.createElement('span');
+  status.textContent = character.status;
+  status.setAttribute('class', 'span-text');
+  $charStatus.appendChild(status);
+
+  var $charSpecies = document.createElement('h2');
+  $charSpecies.setAttribute('class', 'reem-font pl');
+  $charSpecies.textContent = 'Species: ';
+  $secColFull.appendChild($charSpecies);
+
+  var species = document.createElement('span');
+  species.textContent = character.species;
+  species.setAttribute('class', 'span-text');
+  $charSpecies.appendChild(species);
+
+  var $charGender = document.createElement('h2');
+  $charGender.setAttribute('class', 'reem-font pl');
+  $charGender.textContent = 'Gender: ';
+  $secColFull.appendChild($charGender);
+
+  var gender = document.createElement('span');
+  gender.textContent = character.gender;
+  gender.setAttribute('class', 'span-text');
+  $charGender.appendChild(gender);
+
+  var $charOrigin = document.createElement('h2');
+  $charOrigin.setAttribute('class', 'reem-font pl');
+  $charOrigin.textContent = 'Origin: ';
+  $secColFull.appendChild($charOrigin);
+
+  var origin = document.createElement('span');
+  origin.textContent = character.origin.name;
+  origin.setAttribute('class', 'span-text');
+  $charOrigin.appendChild(origin);
+
+  var $charLocation = document.createElement('h2');
+  $charLocation.setAttribute('class', 'reem-font pl');
+  $charLocation.textContent = 'Location: ';
+  $secColFull.appendChild($charLocation);
+
+  var location = document.createElement('span');
+  location.textContent = character.location.name;
+  location.setAttribute('class', 'span-text');
+  $charLocation.appendChild(location);
 
   return $modalDiv;
 

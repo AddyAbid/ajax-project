@@ -39,7 +39,7 @@
   <header>
       <div class="nav row">
         <div class="column-20 center-text order-1 " data-view="dashboard">
-        <button class="non-current select button home dash-button" data-view="dashboard"><a class="select button home" data-view="dashboard">Home</a></button>
+        <button class="non-current select button home dash-button clear-game" data-view="dashboard"><a class="select button home" data-view="dashboard">Home</a></button>
       </div>
         <div class="column-20 center-text hide tab" data-view="game-view">
           <button class="tab non-current select button home game-button-desktop play-again-button" data-view="game-view"> <a class="game-button-desktop  select button" data-view="game-view">Play Game</a></button>
@@ -48,10 +48,10 @@
           <a class="get-schwifty-font">Guess That Rick</a>
         </div>
         <div class="column-20 center-text hide">
-          <a class="tab reem-font">My Characters</a>
+          <button class="tab non-current select button home favorites-tab clear-game" data-view="favorites"> <a class="game-button-desktop  select button" data-view="favorites">My Favorites</a></button>
         </div>
         <div class="column-20 center-text hide">
-          <a class="tab reem-font">My Custom Games</a>
+
         </div>
       </div>
 
@@ -88,7 +88,7 @@
       </div>
     </div>
     <div class="container view hidden" data-view="game-view">
-      <div data-view="game-view" class="parent-game-row">
+      <div data-view="game-view" class="parent-game-row game-div">
     </div>
     </div>
     <div class="container view  hidden " data-view="character-list">
@@ -98,6 +98,13 @@
         </div>
 
       </div>
+  </div>
+  <div class="container view hidden" data-view="favorites">
+    <div class="favorites-list row  flex-wrap pt-3rem">
+      <div class="hidden-card-favorites">
+
+      </div>
+    </div>
   </div>
   </main>
   <script src="js/data.js"></script>
