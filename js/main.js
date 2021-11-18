@@ -16,6 +16,7 @@ var timerId = null;
 var rightAnswer = 0;
 var questionCounter = 0;
 
+document.addEventListener('click', saveCharEvent);
 document.addEventListener('click', showCharDetails);
 document.addEventListener('click', clearData);
 document.addEventListener('click', hideCharDetails);
@@ -302,16 +303,20 @@ function appendChars() {
     $parentListView.appendChild(renderSearchResults(data.characterData[i]));
   }
 }
-
+var currentChar;
 function showCharDetails(event) {
   if (event.target.classList.contains('results-img')) {
     for (var i = 0; i < data.characterData.length; i++) {
       if (data.characterData[i].image === event.target.src) {
+        currentChar = data.characterData[i];
         hideDetails.classList.remove('hidden');
         hideDetails.appendChild(renderCharCard(data.characterData[i]));
       }
+
     }
+
   }
+
 }
 
 function hideCharDetails(event) {
@@ -332,6 +337,12 @@ function clearData(event) {
 
     }
   }
+}
+function saveCharEvent(event) {
+  if (event.target.classList.contains('save-hover')) {
+    data.favorites.push(currentChar);
+  }
+
 }
 
 function renderCharCard(character) {
@@ -413,6 +424,11 @@ function renderCharCard(character) {
   location.textContent = character.location.name;
   location.setAttribute('class', 'span-text');
   $charLocation.appendChild(location);
+
+  var $saveButton = document.createElement('span');
+  $saveButton.setAttribute('class', 'center-text mt-3rem reem-font save-hover margin-auto display-table');
+  $saveButton.textContent = 'Save to Favorites?';
+  $secColFull.appendChild($saveButton);
 
   return $modalDiv;
 
