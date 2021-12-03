@@ -112,6 +112,7 @@ function getRandomChar(randomNumArray) {
     while ($gameDiv.firstChild) {
       $gameDiv.removeChild($gameDiv.firstChild);
     }
+    // console.log(eachChar);
     gameOptions.appendChild(renderRandomGame(eachChar, randomIndex));
     gameOptions.addEventListener('click', answerClick);
     gameOptions.addEventListener('click', renderRandomGame);
@@ -151,6 +152,7 @@ function clickAnswer(eachChar, randomIndex) {
     $score.textContent = String(rightAnswer) + '/ 10';
     clearInterval(timerId);
   }
+  generateRandom(eachChar);
 }
 
 function generateRandom(event) {
@@ -201,6 +203,7 @@ function generateRandomNewGame(event) {
 }
 
 function renderRandomGame(chars, index) {
+  // console.log(chars[index].image);
   var $gameContentDiv = document.createElement('div');
   $gameContentDiv.setAttribute('class', 'parent-game-row');
 
@@ -554,3 +557,9 @@ function renderFavCharCard(character) {
   return $modalDiv;
 
 }
+
+/*
+generate random number
+pass in number to get request
+
+*/
