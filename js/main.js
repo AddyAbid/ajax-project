@@ -98,9 +98,12 @@ function getRandomChar(randomNumArray) {
   xhr.addEventListener('load', function () {
     var eachChar = [];
     var matchingCharacters = xhr.response.results;
+    // console.log('hrere', xhr.response.results);
     for (var j = 0; j < randomNumArray.length; j++) {
+      // console.log(randomNumArray);
       var allAnswers = matchingCharacters[randomNumArray[j]];
       eachChar.push(allAnswers);
+      // console.log(eachChar);
     }
 
     var randomIndex = Math.floor(Math.random() * eachChar.length);
@@ -112,8 +115,9 @@ function getRandomChar(randomNumArray) {
     while ($gameDiv.firstChild) {
       $gameDiv.removeChild($gameDiv.firstChild);
     }
+    const RENDERGAME = renderRandomGame(eachChar, randomIndex);
     // console.log(eachChar);
-    gameOptions.appendChild(renderRandomGame(eachChar, randomIndex));
+    gameOptions.appendChild(RENDERGAME);
     gameOptions.addEventListener('click', answerClick);
     gameOptions.addEventListener('click', renderRandomGame);
     gameOptions.addEventListener('click', getRandomChar);
@@ -131,6 +135,7 @@ function clickAnswer(eachChar, randomIndex) {
     return;
   }
   if (event.target.textContent === eachChar[randomIndex].name) {
+
     rightAnswer++;
 
     event.target.style.backgroundColor = 'green';
@@ -152,7 +157,7 @@ function clickAnswer(eachChar, randomIndex) {
     $score.textContent = String(rightAnswer) + '/ 10';
     clearInterval(timerId);
   }
-  generateRandom(eachChar);
+
 }
 
 function generateRandom(event) {
@@ -203,7 +208,7 @@ function generateRandomNewGame(event) {
 }
 
 function renderRandomGame(chars, index) {
-  // console.log(chars[index].image);
+  // console.log(chars[index]);
   var $gameContentDiv = document.createElement('div');
   $gameContentDiv.setAttribute('class', 'parent-game-row');
 
