@@ -1,4 +1,3 @@
-
 var $view = document.querySelectorAll('.view');
 var $viewCharButton = document.querySelector('.view-button');
 var $parentListView = document.querySelector('.char-list');
@@ -98,12 +97,9 @@ function getRandomChar(randomNumArray) {
   xhr.addEventListener('load', function () {
     var eachChar = [];
     var matchingCharacters = xhr.response.results;
-    // console.log('hrere', xhr.response.results);
     for (var j = 0; j < randomNumArray.length; j++) {
-      // console.log(randomNumArray);
       var allAnswers = matchingCharacters[randomNumArray[j]];
       eachChar.push(allAnswers);
-      // console.log(eachChar);
     }
 
     var randomIndex = Math.floor(Math.random() * eachChar.length);
@@ -115,19 +111,16 @@ function getRandomChar(randomNumArray) {
     while ($gameDiv.firstChild) {
       $gameDiv.removeChild($gameDiv.firstChild);
     }
-    const RENDERGAME = renderRandomGame(eachChar, randomIndex);
-    // console.log(eachChar);
-    gameOptions.appendChild(RENDERGAME);
+    gameOptions.appendChild(renderRandomGame(eachChar, randomIndex));
     gameOptions.addEventListener('click', answerClick);
-    gameOptions.addEventListener('click', renderRandomGame);
-    gameOptions.addEventListener('click', getRandomChar);
+    // gameOptions.addEventListener('click', renderRandomGame);
+    // gameOptions.addEventListener('click', getRandomChar);
 
   });
   xhr.send();
 }
 
 function clickAnswer(eachChar, randomIndex) {
-  timerId = setTimeout(generateRandom, 1000);
 
   data.characterData.push(eachChar[randomIndex]);
 
@@ -135,7 +128,6 @@ function clickAnswer(eachChar, randomIndex) {
     return;
   }
   if (event.target.textContent === eachChar[randomIndex].name) {
-
     rightAnswer++;
 
     event.target.style.backgroundColor = 'green';
@@ -156,8 +148,9 @@ function clickAnswer(eachChar, randomIndex) {
     $modal.classList.remove('hidden');
     $score.textContent = String(rightAnswer) + '/ 10';
     clearInterval(timerId);
+  } else {
+    timerId = setTimeout(generateRandom, 1000);
   }
-
 }
 
 function generateRandom(event) {
@@ -208,7 +201,6 @@ function generateRandomNewGame(event) {
 }
 
 function renderRandomGame(chars, index) {
-  // console.log(chars[index]);
   var $gameContentDiv = document.createElement('div');
   $gameContentDiv.setAttribute('class', 'parent-game-row');
 
@@ -562,9 +554,3 @@ function renderFavCharCard(character) {
   return $modalDiv;
 
 }
-
-/*
-generate random number
-pass in number to get request
-
-*/
