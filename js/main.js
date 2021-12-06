@@ -113,8 +113,6 @@ function getRandomChar(randomNumArray) {
     }
     gameOptions.appendChild(renderRandomGame(eachChar, randomIndex));
     gameOptions.addEventListener('click', answerClick);
-    // gameOptions.addEventListener('click', renderRandomGame);
-    // gameOptions.addEventListener('click', getRandomChar);
 
   });
   xhr.send();
