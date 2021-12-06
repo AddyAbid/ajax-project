@@ -12,9 +12,13 @@
   background-color: rgba(255, 255, 255, 0.842);
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
+  top: 25%;
+  bottom: 25%;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  overflow-y: scroll;
+  overflow-x: hidden;
 }
 
 .column-full {
@@ -188,5 +192,10 @@
 
   .column-100 {
     width: 100%;
+  }
+
+  .width-80 {
+    top: 10%;
+    bottom: 10%;
   }
 }
