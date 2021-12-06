@@ -1,4 +1,5 @@
-
+/* global data */
+/* exported data */
 var $view = document.querySelectorAll('.view');
 var $viewCharButton = document.querySelector('.view-button');
 var $parentListView = document.querySelector('.char-list');
