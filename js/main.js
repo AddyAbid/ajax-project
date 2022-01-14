@@ -1,3 +1,5 @@
+/* global data */
+/* exported data */
 
 var $view = document.querySelectorAll('.view');
 var $viewCharButton = document.querySelector('.view-button');
@@ -114,15 +116,14 @@ function getRandomChar(randomNumArray) {
     }
     gameOptions.appendChild(renderRandomGame(eachChar, randomIndex));
     gameOptions.addEventListener('click', answerClick);
-    gameOptions.addEventListener('click', renderRandomGame);
-    gameOptions.addEventListener('click', getRandomChar);
+    // gameOptions.addEventListener('click', renderRandomGame);
+    // gameOptions.addEventListener('click', getRandomChar);
 
   });
   xhr.send();
 }
 
 function clickAnswer(eachChar, randomIndex) {
-  timerId = setTimeout(generateRandom, 1000);
 
   data.characterData.push(eachChar[randomIndex]);
 
@@ -150,6 +151,8 @@ function clickAnswer(eachChar, randomIndex) {
     $modal.classList.remove('hidden');
     $score.textContent = String(rightAnswer) + '/ 10';
     clearInterval(timerId);
+  } else {
+    timerId = setTimeout(generateRandom, 1000);
   }
 }
 
