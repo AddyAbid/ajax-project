@@ -2,6 +2,14 @@
   display: none;
 }
 
+.error {
+  display: none;
+}
+
+.hidden-error {
+  display: none;
+}
+
 .inline {
   display: inline;
 }

@@ -35,7 +35,6 @@ $input.addEventListener('submit', submitData);
 document.addEventListener('click', viewHandler);
 
 function swapView(viewName) {
-
   $modal.classList.add('hidden');
   for (var i = 0; i < $view.length; i++) {
 
@@ -46,11 +45,13 @@ function swapView(viewName) {
       $view[i].className = 'container view hidden';
     }
   }
+
   data.view = viewName;
 
 }
 
 function viewHandler(event) {
+  const $spinner = document.querySelector('.hidden-spinner');
   if (!event.target.matches('.button')) {
     return;
   }
@@ -61,33 +62,45 @@ function viewHandler(event) {
   if (event.target.matches('.clear-game')) {
     questionCounter = 0;
   }
+  if (event.target.matches('.results')) {
+    $spinner.className = 'row justify-center';
+  }
   swapView(event.target.getAttribute('data-view'));
 }
 
 function submitData(event) {
   event.preventDefault();
+
   swapView(data.view);
   var characterSearched = {
     searched: $input.input.value
   };
   var name = characterSearched.searched;
+  const $spinner = document.querySelector('.row.justify-center');
+  const $networkError = document.querySelector('.hidden-error');
+  if (!navigator.onLine) {
+    $spinner.className = 'hidden-spinner';
+    $networkError.className = 'network-error';
+
+  }
   getCharacterData(name);
   $input.reset();
 }
 
 function getCharacterData(name) {
+  const $spinner = document.querySelector('.row.justify-center');
   var xhr = new XMLHttpRequest();
   xhr.open('GET', 'https://rickandmortyapi.com/api/character/?name=' + name);
   xhr.responseType = 'json';
   xhr.addEventListener('load', function () {
     var matchingCharacters = xhr.response.results;
+    if (matchingCharacters) {
+      $spinner.className = 'hidden-spinner';
+    }
     var position = document.querySelector('.mb-1rem');
-
     for (var i = 0; i < matchingCharacters.length; i++) {
-
       position.appendChild(renderSearchResults(matchingCharacters[i]));
     }
-
   }
   );
   xhr.send();
@@ -116,8 +129,6 @@ function getRandomChar(randomNumArray) {
     }
     gameOptions.appendChild(renderRandomGame(eachChar, randomIndex));
     gameOptions.addEventListener('click', answerClick);
-    // gameOptions.addEventListener('click', renderRandomGame);
-    // gameOptions.addEventListener('click', getRandomChar);
 
   });
   xhr.send();
@@ -376,7 +387,9 @@ function saveCharEvent(event) {
 }
 window.addEventListener('DOMContentLoaded', createDOM);
 document.addEventListener('click', viewHandler);
+
 function createDOM(event) {
+  if (!data.favorites) return;
   for (var i = 0; i < data.favorites.length; i++) {
     var eachEntry = renderSearchResults(data.favorites[i]);
     $favoritesList.append(eachEntry);
