@@ -129,7 +129,6 @@ function getRandomChar(randomNumArray) {
     }
     gameOptions.appendChild(renderRandomGame(eachChar, randomIndex));
     gameOptions.addEventListener('click', answerClick);
-
   });
   xhr.send();
 }
