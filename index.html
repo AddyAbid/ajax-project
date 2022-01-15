@@ -76,7 +76,7 @@
                    name="input"
                    id="search"
                    class="form-input">
-            <button class="search-button reem-font-white select button submit" type="submit" data-view="results">Submit</button>
+            <button class="search-button reem-font-white select button submit results" type="submit" data-view="results">Submit</button>
           </form>
           <div class="center-text mt-3rem">
             <button class="play-game-button game-button-mobile reem-font-white select button hide-big" data-view="game-view">Play Game</button>
@@ -88,10 +88,10 @@
       </div>
     </div>
     <div class="container view hidden" data-view="results">
+      <div class="results center-text errorParent" data-view="results">
 
-      <div class="results" data-view="results">
         <div class="row  mb-1rem flex-wrap pt-3rem">
-          <h2 class="if-no-results reem-font"></h2>
+
           </div>
       </div>
     </div>
@@ -114,6 +114,20 @@
       </div>
     </div>
   </div>
+  <div class="hidden-spinner">
+    <div class="lds-ellipsis">
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+  </div>
+  <div class="hidden-error">
+    <h2 class="if-no-results reem-font center-text column-100 color-black">
+      Please check you network connection and try again
+    </h2>
+  </div>
+
   </main>
   <script src="js/data.js"></script>
   <script src="js/main.js"></script>
