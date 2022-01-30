@@ -158,6 +158,10 @@
   justify-content: center;
 }
 
+.no-results {
+  display: none;
+}
+
 .hidden-spinner {
   display: none;
 }
