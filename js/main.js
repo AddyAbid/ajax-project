@@ -58,7 +58,6 @@ function viewHandler(event) {
     return;
   }
   if (event.target.matches('.home')) {
-    a.className = 'no-results';
     var position = document.querySelector('.mb-1rem');
     position.textContent = '';
   }
@@ -68,7 +67,10 @@ function viewHandler(event) {
   if (event.target.matches('.results')) {
     $spinner.className = 'row justify-center';
   }
-  if (event.target.matches('.favorites')) {
+  if (event.target.tagName.toLowerCase() === 'a' && a) {
+    a.className = 'no-results';
+  }
+  if (event.target.matches('.favorites') && a) {
     a.className = 'no-results';
   }
   swapView(event.target.getAttribute('data-view'));
