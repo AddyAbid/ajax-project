@@ -6,7 +6,7 @@ Reason for build
 
 > I was looking for an API to use for a project but knew I wanted to have some fun with it. Being a huge rick and morty fan, I decided to use the Rick and Morty API to make a character app. Also, I had never built a game before and knew it would be a challenge so I decieded to incorporate a gaming aspect to it! 
 
-[Link to live site!](addyabid.github.io/guess-that-rick/)
+[Link to live site!](https://addyabid.github.io/guess-that-rick/)
 
 # Languages Used
 
