@@ -22,7 +22,7 @@ Reason for build
 * User can view character details
 * User can view favorites
 
-![gitrivk](https://user-images.githubusercontent.com/85080021/151881830-99b676df-a10b-477b-bb98-9fc0d21d75bd.gif)
+![gitrivk](https://user-images.githubusercontent.com/85080021/151881830-99b676df-a10b-477b-bb98-9fc0d21d75bd.gif =250x250)
 
 **Future Features**
 
