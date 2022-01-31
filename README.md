@@ -1,4 +1,4 @@
-# ajax-project
+# Guess that Rick
 
 An HTML5, CSS3, and JavaScript web application for Rick and Morty fans
 
