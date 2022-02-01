@@ -52,6 +52,8 @@ function swapView(viewName) {
 
 function viewHandler(event) {
   const $spinner = document.querySelector('.hidden-spinner');
+  const a = document.querySelector('.a');
+
   if (!event.target.matches('.button')) {
     return;
   }
@@ -64,6 +66,12 @@ function viewHandler(event) {
   }
   if (event.target.matches('.results')) {
     $spinner.className = 'row justify-center';
+  }
+  if (event.target.tagName.toLowerCase() === 'a' && a) {
+    a.className = 'no-results';
+  }
+  if (event.target.matches('.favorites') && a) {
+    a.className = 'no-results';
   }
   swapView(event.target.getAttribute('data-view'));
 }
@@ -89,13 +97,19 @@ function submitData(event) {
 
 function getCharacterData(name) {
   const $spinner = document.querySelector('.row.justify-center');
+  const $noMatchingResults = document.querySelector('.no-results');
   var xhr = new XMLHttpRequest();
   xhr.open('GET', 'https://rickandmortyapi.com/api/character/?name=' + name);
   xhr.responseType = 'json';
   xhr.addEventListener('load', function () {
     var matchingCharacters = xhr.response.results;
     if (matchingCharacters) {
+
       $spinner.className = 'hidden-spinner';
+    }
+    if (matchingCharacters === undefined) {
+      $spinner.className = 'hidden-spinner';
+      $noMatchingResults.className = 'a';
     }
     var position = document.querySelector('.mb-1rem');
     for (var i = 0; i < matchingCharacters.length; i++) {
