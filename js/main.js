@@ -52,8 +52,7 @@ function swapView(viewName) {
 
 function viewHandler(event) {
   const $spinner = document.querySelector('.hidden-spinner');
-  const a = document.querySelector('.a');
-
+  const noResults = document.querySelector('.no-matching-results');
   if (!event.target.matches('.button')) {
     return;
   }
@@ -67,18 +66,17 @@ function viewHandler(event) {
   if (event.target.matches('.results')) {
     $spinner.className = 'row justify-center';
   }
-  if (event.target.tagName.toLowerCase() === 'a' && a) {
-    a.className = 'no-results';
+  if (event.target.tagName.toLowerCase() === 'a' && noResults) {
+    noResults.className = 'no-results';
   }
-  if (event.target.matches('.favorites') && a) {
-    a.className = 'no-results';
+  if (event.target.matches('.favorites') && noResults) {
+    noResults.className = 'no-results';
   }
   swapView(event.target.getAttribute('data-view'));
 }
 
 function submitData(event) {
   event.preventDefault();
-
   swapView(data.view);
   var characterSearched = {
     searched: $input.input.value
@@ -89,7 +87,6 @@ function submitData(event) {
   if (!navigator.onLine) {
     $spinner.className = 'hidden-spinner';
     $networkError.className = 'network-error';
-
   }
   getCharacterData(name);
   $input.reset();
@@ -104,12 +101,11 @@ function getCharacterData(name) {
   xhr.addEventListener('load', function () {
     var matchingCharacters = xhr.response.results;
     if (matchingCharacters) {
-
       $spinner.className = 'hidden-spinner';
     }
     if (matchingCharacters === undefined) {
       $spinner.className = 'hidden-spinner';
-      $noMatchingResults.className = 'a';
+      $noMatchingResults.className = 'no-matching-results';
     }
     var position = document.querySelector('.mb-1rem');
     for (var i = 0; i < matchingCharacters.length; i++) {
@@ -131,9 +127,7 @@ function getRandomChar(randomNumArray) {
       var allAnswers = matchingCharacters[randomNumArray[j]];
       eachChar.push(allAnswers);
     }
-
     var randomIndex = Math.floor(Math.random() * eachChar.length);
-
     function answerClick(event) {
       clickAnswer(eachChar, randomIndex);
       gameOptions.removeEventListener('click', answerClick);
@@ -148,27 +142,20 @@ function getRandomChar(randomNumArray) {
 }
 
 function clickAnswer(eachChar, randomIndex) {
-
   data.characterData.push(eachChar[randomIndex]);
-
   if (event.target.tagName !== 'H3') {
     return;
   }
   if (event.target.textContent === eachChar[randomIndex].name) {
     rightAnswer++;
-
     event.target.style.backgroundColor = 'green';
     event.target.style.borderRadius = '8px';
     event.target.style.color = 'white';
-
   } else {
-
     event.target.style.backgroundColor = 'red';
     event.target.style.borderRadius = '8px';
     event.target.style.color = 'white';
-
   }
-
   questionCounter++;
   if (questionCounter === 10) {
     questionCounter = 0;
@@ -198,7 +185,6 @@ function generateSingleRandomNumber(min, max) {
 }
 
 function renderSearchResults(characters) {
-
   var $colFourth = document.createElement('div');
   $colFourth.setAttribute('class', 'col-fourth card');
 
@@ -222,7 +208,6 @@ function renderSearchResults(characters) {
 function generateRandomNewGame(event) {
   rightAnswer = 0;
   $modal.classList.add('hidden');
-
   submitRandom(0, 19);
   $gameContainer.textContent = '';
 }
@@ -342,12 +327,10 @@ function showCharDetails(event) {
         hideDetails.classList.remove('hidden');
         hideDetails.appendChild(renderCharCard(data.characterData[i]));
       }
-
     }
-
   }
-
 }
+
 document.addEventListener('click', showFavoritesCard);
 
 function showFavoritesCard(event) {
@@ -359,8 +342,8 @@ function showFavoritesCard(event) {
       }
     }
   }
-
 }
+
 function hideFavCharDetails(event) {
   if (event.target.tagName === 'I') {
     hideDetailsFavorite.classList.add('hidden');
@@ -378,6 +361,7 @@ function hideCharDetails(event) {
     }
   }
 }
+
 function clearData(event) {
   var $parentListView = document.querySelector('#list');
   if (data.view !== 'character-list' && event.target.tagName === 'A') {
@@ -385,10 +369,10 @@ function clearData(event) {
     rightAnswer = 0;
     while ($parentListView.childNodes.length > 2) {
       $parentListView.removeChild($parentListView.lastChild);
-
     }
   }
 }
+
 function saveCharEvent(event) {
   if (event.target.classList.contains('save-hover')) {
     data.favorites.push(currentChar);
@@ -398,6 +382,7 @@ function saveCharEvent(event) {
     charSavedText.classList.add('green-text');
   }
 }
+
 window.addEventListener('DOMContentLoaded', createDOM);
 document.addEventListener('click', viewHandler);
 
@@ -406,7 +391,6 @@ function createDOM(event) {
   for (var i = 0; i < data.favorites.length; i++) {
     var eachEntry = renderSearchResults(data.favorites[i]);
     $favoritesList.append(eachEntry);
-
   }
   swapView(data.view);
 }
