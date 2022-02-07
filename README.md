@@ -8,7 +8,7 @@ Reason for build
 
 [Link to live site!](https://addyabid.github.io/guess-that-rick/)
 
-# Languages Used
+# Technologies Used
 
 * HTML5
 * CSS3
